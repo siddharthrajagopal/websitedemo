@@ -13,16 +13,28 @@
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">Data as the Fourth Pillar</a>
-            <button class="mobile-menu-btn">
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             <div class="nav-links">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#themes" class="nav-link">Key Themes</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#home" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#themes" class="nav-link">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Key Themes</span>
+                </a>
+                <a href="#recommendations" class="nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Recommendations</span>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -30,11 +42,14 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <h1>Welcome to Data as the Fourth Pillar</h1>
-            <p>An Executive Guide for Scaling AI</p>
+            <h1>
+                <span class="welcome-text">Welcome to</span><br>
+                <span class="main-title">Data as the Fourth Pillar</span>
+            </h1>
+            <p class="subtitle">An Executive Guide for Scaling AI</p>
             <div class="cta-group">
-                <a href="#contact" class="cta-button">Get Started</a>
-                <a href="#about" class="cta-button secondary">Learn More</a>
+                <a href="#contact" class="cta-button">Join the Waitlist</a>
+                <a href="#about" class="cta-button secondary">Recommendations</a>
             </div>
         </div>
     </section>
@@ -47,23 +62,9 @@
                 <div class="about-text">
                     <p>At Data as the Fourth Pillar, we explore the profound influence of data in our lives through the lens of storytelling. This book, authored by two insightful writers, delves into how data shapes our understanding of the world around us.</p>
                     <p>With a blend of engaging anecdotes and rigorous analysis, we aim to enlighten readers about the pivotal role data plays in various aspects of society.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="number">10+</span>
-                            <span class="label">Years Experience</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">50+</span>
-                            <span class="label">Case Studies</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">200+</span>
-                            <span class="label">Pages</span>
-                        </div>
-                    </div>
                 </div>
                 <div class="about-image">
-                    <img src="assets/about-image.jpg" alt="Data Analytics Book">
+                    <img src="assets/about-image.jpg" alt="Data as the Fourth Pillar Book">
                 </div>
             </div>
         </div>
@@ -75,28 +76,127 @@
             <h2>Key Themes Explored</h2>
             <div class="services-grid">
                 <div class="service-card" data-aos="fade-up">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-vector-square"></i>
                     <h3>Data Intensity</h3>
                     <p>Explore the foundations of data science and its real-world applications in decision-making.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-cogs"></i>
                     <h3>Data Operating Model</h3>
                     <p>Discover how to build and maintain effective data operations in your organization.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-chart-bar"></i>
                     <h3>Business Value KPIs</h3>
                     <p>Learn to measure and track the impact of data initiatives on business outcomes.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <i class="fas fa-road"></i>
                     <h3>Data Maturity Journey</h3>
                     <p>Navigate the path to data maturity with practical insights and strategies.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-car"></i>
+                    <h3>Audi Case Study</h3>
+                    <p>Explore how Audi transformed their business through data-driven decision making and AI implementation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="recommendations" class="recommendations">
+        <div class="container">
+            <h2>What Leaders Are Saying</h2>
+            <div class="recommendations-slider">
+                <div class="recommendation-card">
+                    <div class="recommendation-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"A groundbreaking perspective on how data is transforming business. This book is a must-read for any executive looking to scale AI effectively."</p>
+                        <div class="recommender">
+                            <h4>John Smith</h4>
+                            <p>CEO, Tech Innovations Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="recommendation-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"The insights on data maturity and organizational readiness are invaluable. This book provides a clear roadmap for digital transformation."</p>
+                        <div class="recommender">
+                            <h4>Sarah Johnson</h4>
+                            <p>CTO, Digital Solutions Corp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="recommendation-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Finally, a practical guide that bridges the gap between data science and business strategy. The case studies are particularly enlightening."</p>
+                        <div class="recommender">
+                            <h4>Michael Chen</h4>
+                            <p>Head of AI, Future Analytics</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="recommendation-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"The authors' deep understanding of both technical and business aspects makes this book an essential resource for modern business leaders."</p>
+                        <div class="recommender">
+                            <h4>Emma Davis</h4>
+                            <p>Digital Transformation Director, Global Corp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="recommendation-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"A comprehensive guide that perfectly balances theoretical frameworks with practical implementation strategies. Highly recommended."</p>
+                        <div class="recommender">
+                            <h4>Robert Wilson</h4>
+                            <p>Chief Data Officer, Enterprise Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <div class="recommendation-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"The Fourth Pillar framework presented in this book has transformed how we approach data strategy in our organization."</p>
+                        <div class="recommender">
+                            <h4>Lisa Thompson</h4>
+                            <p>VP of Innovation, Next Gen Tech</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Timer Section -->
+    <section class="countdown">
+        <div class="container">
+            <h2>Book Launch Countdown</h2>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <span id="days">0</span>
+                    <p>Days</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">0</span>
+                    <p>Hours</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">0</span>
+                    <p>Minutes</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">0</span>
+                    <p>Seconds</p>
                 </div>
             </div>
         </div>
@@ -233,6 +333,71 @@
         document.querySelectorAll('.about-text, .about-image, .service-card, .contact-form').forEach((el) => {
             observer.observe(el);
         });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('September 1, 2025 00:00:00').getTime();
+            
+            function update() {
+                const currentDate = new Date().getTime();
+                const difference = targetDate - currentDate;
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+                if (difference < 0) {
+                    clearInterval(timerInterval);
+                    document.querySelector('.countdown-timer').innerHTML = '<h3>The Book Has Launched!</h3>';
+                }
+            }
+
+            update();
+            const timerInterval = setInterval(update, 1000);
+        }
+
+        updateCountdown();
+
+        // Recommendations Slider
+        const slider = document.querySelector('.recommendations-slider');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const cardWidth = 430; // card width + gap
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollLeft -= cardWidth;
+        });
+
+        nextBtn.addEventListener('click', () => {
+            slider.scrollLeft += cardWidth;
+        });
+
+        // Auto scroll
+        let scrollInterval;
+        const startAutoScroll = () => {
+            scrollInterval = setInterval(() => {
+                if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
+                    slider.scrollLeft = 0;
+                } else {
+                    slider.scrollLeft += cardWidth;
+                }
+            }, 5000);
+        };
+
+        const stopAutoScroll = () => {
+            clearInterval(scrollInterval);
+        };
+
+        slider.addEventListener('mouseenter', stopAutoScroll);
+        slider.addEventListener('mouseleave', startAutoScroll);
+
+        startAutoScroll();
     </script>
 </body>
 </html> 
