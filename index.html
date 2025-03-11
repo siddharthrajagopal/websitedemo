@@ -49,7 +49,7 @@
             <p class="subtitle">An Executive Guide for Scaling AI</p>
             <div class="cta-group">
                 <a href="#contact" class="cta-button">Join the Waitlist</a>
-                <a href="#about" class="cta-button secondary">Recommendations</a>
+                <a href="#recommendations" class="cta-button secondary">Recommendations</a>
             </div>
         </div>
     </section>
@@ -62,9 +62,6 @@
                 <div class="about-text">
                     <p>At Data as the Fourth Pillar, we explore the profound influence of data in our lives through the lens of storytelling. This book, authored by two insightful writers, delves into how data shapes our understanding of the world around us.</p>
                     <p>With a blend of engaging anecdotes and rigorous analysis, we aim to enlighten readers about the pivotal role data plays in various aspects of society.</p>
-                </div>
-                <div class="about-image">
-                    <img src="assets/about-image.jpg" alt="Data as the Fourth Pillar Book">
                 </div>
             </div>
         </div>
@@ -112,60 +109,60 @@
                 <div class="recommendation-card">
                     <div class="recommendation-content">
                         <i class="fas fa-quote-left"></i>
-                        <p>"A groundbreaking perspective on how data is transforming business. This book is a must-read for any executive looking to scale AI effectively."</p>
+                        <p>"A compelling read providing actionable insights and a maturity journey."</p>
                         <div class="recommender">
-                            <h4>John Smith</h4>
-                            <p>CEO, Tech Innovations Inc.</p>
+                            <h4>Sandeep Kishore</h4>
+                            <p>Founder & CEO, Agivant Technologies, USA</p>
                         </div>
                     </div>
                 </div>
                 <div class="recommendation-card">
                     <div class="recommendation-content">
                         <i class="fas fa-quote-left"></i>
-                        <p>"The insights on data maturity and organizational readiness are invaluable. This book provides a clear roadmap for digital transformation."</p>
+                        <p>"This book reveals how strategic data use fuels growth, unlocks value, and powers AI-driven innovation."</p>
                         <div class="recommender">
-                            <h4>Sarah Johnson</h4>
-                            <p>CTO, Digital Solutions Corp</p>
+                            <h4>Liselotte Hägertz Engstam</h4>
+                            <p>Professional Board Member & Strategic Advisor, Sweden</p>
                         </div>
                     </div>
                 </div>
                 <div class="recommendation-card">
                     <div class="recommendation-content">
                         <i class="fas fa-quote-left"></i>
-                        <p>"Finally, a practical guide that bridges the gap between data science and business strategy. The case studies are particularly enlightening."</p>
+                        <p>"The emphasis on the CEO and Board's critical role in driving this transformation is particularly insightful."</p>
                         <div class="recommender">
-                            <h4>Michael Chen</h4>
-                            <p>Head of AI, Future Analytics</p>
+                            <h4>Mukundan Ramakrishnan</h4>
+                            <p>Managing Director at Tata Chemicals Limited, India</p>
                         </div>
                     </div>
                 </div>
                 <div class="recommendation-card">
                     <div class="recommendation-content">
                         <i class="fas fa-quote-left"></i>
-                        <p>"The authors' deep understanding of both technical and business aspects makes this book an essential resource for modern business leaders."</p>
+                        <p>"Besides the practical frameworks, what makes this book particularly valuable is the link to business value creation."</p>
                         <div class="recommender">
-                            <h4>Emma Davis</h4>
-                            <p>Digital Transformation Director, Global Corp</p>
+                            <h4>Dr. Rainer Deutschmann</h4>
+                            <p>Senior Executive in Telecom and Technology Industries. Board Director, Advisor and Investor, Malaysia</p>
                         </div>
                     </div>
                 </div>
                 <div class="recommendation-card">
                     <div class="recommendation-content">
                         <i class="fas fa-quote-left"></i>
-                        <p>"A comprehensive guide that perfectly balances theoretical frameworks with practical implementation strategies. Highly recommended."</p>
+                        <p>"These strategies work and are essential. I've seen them transform organizations firsthand."</p>
                         <div class="recommender">
-                            <h4>Robert Wilson</h4>
-                            <p>Chief Data Officer, Enterprise Solutions</p>
+                            <h4>Binny Gill</h4>
+                            <p>CEO at Kognitos, Inc., USA</p>
                         </div>
                     </div>
                 </div>
                 <div class="recommendation-card">
                     <div class="recommendation-content">
                         <i class="fas fa-quote-left"></i>
-                        <p>"The Fourth Pillar framework presented in this book has transformed how we approach data strategy in our organization."</p>
+                        <p>"This book stands out because it introduces a viable model filled with actionable concepts that can be readily implemented."</p>
                         <div class="recommender">
-                            <h4>Lisa Thompson</h4>
-                            <p>VP of Innovation, Next Gen Tech</p>
+                            <h4>Rüdiger Eck</h4>
+                            <p>Head of Data and Analytics Factory for Production & Logistics at Audi AG, Germany</p>
                         </div>
                     </div>
                 </div>
@@ -205,7 +202,7 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Join the Pre-Launch List</h2>
+            <h2>Join the Waitlist</h2>
             <div class="contact-form">
                 <form id="contactForm">
                     <div class="form-group">
@@ -302,18 +299,46 @@
             });
         });
 
-        // Form submission animation
+        // Form submission animation and data handling
         const form = document.getElementById('contactForm');
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const button = form.querySelector('button');
-            button.innerHTML = '<i class="fas fa-check"></i> Joined!';
-            button.classList.add('success');
-            setTimeout(() => {
-                button.innerHTML = '<span>Join Now</span><i class="fas fa-arrow-right"></i>';
-                button.classList.remove('success');
-                form.reset();
-            }, 2000);
+            
+            try {
+                const name = encodeURIComponent(form.querySelector('input[type="text"]').value);
+                const email = encodeURIComponent(form.querySelector('input[type="email"]').value);
+                const message = encodeURIComponent(form.querySelector('textarea').value);
+
+                // Create URL with query parameters
+                const url = `https://script.google.com/macros/s/AKfycbz7KRYOE4pl5yqcwbtgKbMHB3f69ziokV2y_Mku12aiI-RLBZM9y4tyqtkauVq24eM/exec?name=${name}&email=${email}&message=${message}`;
+
+                // Update Google Sheet
+                await fetch(url, {
+                    method: 'GET',
+                    mode: 'no-cors'
+                });
+
+                // Show success message
+                button.innerHTML = '<i class="fas fa-check"></i> Joined!';
+                button.classList.add('success');
+                
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = '<span>Join Now</span><i class="fas fa-arrow-right"></i>';
+                    button.classList.remove('success');
+                    form.reset();
+                }, 2000);
+            } catch (error) {
+                // Show error message
+                button.innerHTML = '<i class="fas fa-times"></i> Error!';
+                button.style.backgroundColor = '#e74c3c';
+                setTimeout(() => {
+                    button.innerHTML = '<span>Join Now</span><i class="fas fa-arrow-right"></i>';
+                    button.style.backgroundColor = '';
+                }, 2000);
+                console.error('Error:', error);
+            }
         });
 
         // Intersection Observer for scroll animations
