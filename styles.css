@@ -286,6 +286,12 @@ body {
     flex: 1;
     opacity: 0;
     transform: translateX(-30px);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .about-text.visible {
@@ -311,6 +317,36 @@ body {
 
 .about-image img:hover {
     transform: translateY(-10px);
+}
+
+.highlight-text {
+    font-size: 1.25em;
+    line-height: 1.7;
+    margin-bottom: 0;
+    padding: 15px 25px;
+    background: transparent;
+    border-left: 4px solid var(--accent-color);
+}
+
+.highlight-text:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.highlight-text:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.highlight-text a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.highlight-text a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
 }
 
 /* Services Section */
@@ -988,5 +1024,137 @@ html {
     
     .recommendation-content p {
         font-size: 1rem;
+    }
+}
+
+/* Key Personas Section */
+.personas {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, #fff, #f8f9fa);
+}
+
+.personas h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #2c3e50;
+}
+
+.personas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.persona-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid var(--secondary-color);
+}
+
+.persona-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.persona-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--accent-color);
+}
+
+.persona-icon i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+
+.persona-card h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.persona-card p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .personas-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+}
+
+/* Authors Section */
+.authors {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.authors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.author-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.author-card:hover {
+    transform: translateY(-5px);
+}
+
+.author-image {
+    margin-bottom: 20px;
+}
+
+.author-image i {
+    font-size: 80px;
+    color: #333;
+}
+
+.author-info h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 24px;
+}
+
+.author-info p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .authors-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .author-card {
+        padding: 20px;
     }
 } 

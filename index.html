@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .author-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .author-image .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .author-image:hover .profile-img {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -19,9 +40,13 @@
                 <span></span>
             </button>
             <div class="nav-links">
-                <a href="#home" class="nav-link active">
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
+                <a href="#about" class="nav-link">
+                    <i class="fas fa-book"></i>
+                    <span>About the Book</span>
+                </a>
+                <a href="#personas" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Key Personas</span>
                 </a>
                 <a href="#themes" class="nav-link">
                     <i class="fas fa-layer-group"></i>
@@ -31,9 +56,9 @@
                     <i class="fas fa-star"></i>
                     <span>Recommendations</span>
                 </a>
-                <a href="#contact" class="nav-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contact</span>
+                <a href="#authors" class="nav-link">
+                    <i class="fas fa-feather"></i>
+                    <span>About the Authors</span>
                 </a>
             </div>
         </div>
@@ -60,8 +85,41 @@
             <h2>About The Book</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>At Data as the Fourth Pillar, we explore the profound influence of data in our lives through the lens of storytelling. This book, authored by two insightful writers, delves into how data shapes our understanding of the world around us.</p>
-                    <p>With a blend of engaging anecdotes and rigorous analysis, we aim to enlighten readers about the pivotal role data plays in various aspects of society.</p>
+                    <p class="highlight-text">This book reasons why Data should be the Fourth Pillar for every enterprise, along with people, processes and technology. It provides the Board, CEOs, and CxOs an understanding of why and how they should treat Data strategically. It provides a comprehensive success by design approach for enterprises and guides them through a Maturity Framework to accelerate their data-centric journey.</p>
+                    
+                    <p class="highlight-text">The book covers the "Why", the "What" and the "How" of achieving that goal in measurable terms. To measure the impact provided by the Data pillar, the authors introduce KPIs such as Total Addressable Value through data (TAV) and Expected Addressable Value through data (EAV). The book explores how AI and Data enable and benefit from each other. It provides a case study by <a href="https://www.audi.com/en/company/" target="_blank" rel="noopener noreferrer">Audi AG</a> which brings practical insights into the concepts and frameworks presented.</p>
+                    
+                    <p class="highlight-text">This book is a key resource for business executives in SMB and Large Enterprises who need to accelerate business value to their stakeholder communities in a highly complex and hyper-competitive business landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Personas Section -->
+    <section id="personas" class="personas">
+        <div class="container">
+            <h2>Key Personas</h2>
+            <div class="personas-grid">
+                <div class="persona-card">
+                    <div class="persona-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Board and CEO</h3>
+                    <p>Be the Data Champions. Provide sponsorship and strategic leadership to enable the enterprise to derive long-term value through the data pillar.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>CDO</h3>
+                    <p>The North Star goal of a Chief Data Officer would be to enable all stakeholders to enhance their business outcomes by leveraging data as a strategic asset.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>CxOs</h3>
+                    <p>CIO/CTOs, COOs, CHROs and leaders across different business functions and domains create the flywheel effect – enabling the data pillar and benefitting from it.</p>
                 </div>
             </div>
         </div>
@@ -222,6 +280,51 @@
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About the Authors Section -->
+    <section id="authors" class="authors">
+        <div class="container">
+            <h2>About the Authors</h2>
+            <div class="authors-grid">
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="assets/sujay-dutta.jpg" alt="Sujay Dutta - Global Account Lead at Databricks" class="profile-img">
+                    </div>
+                    <div class="author-info">
+                        <h3><a href="https://www.linkedin.com/in/sujaydutta/" target="_blank" rel="noopener noreferrer">Sujay Dutta</a></h3>
+                        <p>Sujay Dutta is a seasoned technology and business leader with 25+ years of global experience. He believes the future is being shaped at the intersection of AI, Business outcomes, Culture, and Data ("A.B.C.D."). He presently works as a Global Account Lead at Databricks.</p>
+                    </div>
+                </div>
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="assets/siddharth-rajagopal.jpg" alt="Siddharth Rajagopal - Chief Architect at Informatica" class="profile-img">
+                    </div>
+                    <div class="author-info">
+                        <h3><a href="https://www.linkedin.com/in/sidd-rajagopal/" target="_blank" rel="noopener noreferrer">Siddharth Rajagopal</a></h3>
+                        <p>Siddharth (Sidd) Rajagopal is a Chief Architect in the Field CTO Organization at Informatica. In his role, he engages with senior executives at enterprise providing thought leadership around data and data management by sharing his insights and learnings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About the Case Study Writer Section -->
+    <section id="case-study-writer" class="authors case-study-writer">
+        <div class="container">
+            <h2>About the Case Study Writer</h2>
+            <div class="authors-grid">
+                <div class="author-card">
+                    <div class="author-image">
+                        <img src="assets/rudiger-eck.jpg" alt="Rüdiger Eck - Head of Data and Analytics Factory at Audi AG" class="profile-img">
+                    </div>
+                    <div class="author-info">
+                        <h3><a href="https://www.linkedin.com/in/ruediger-eck-70269571/" target="_blank" rel="noopener noreferrer">Rüdiger Eck</a></h3>
+                        <p>Rüdiger is a seasoned professional in the automotive industry with a distinguished career spanning over two decades. Working for two German premium OEMs, Rüdiger has over 20 years of technical track record in global automotive production, including winning two consecutive world champion titles with the Mercedes Formula 1 team. He has spearheaded various Audi teams from the early stages of digitalization in the production industry and now directs Audi's Data and Analytics Factory for Production & Logistics, as well as overseeing Volkswagen Group data activities. With a German master's degree ("Diplom-Ingenieur") in mechanical engineering, Rüdiger has a strong passion for managing technical and organizational change and bridging the gap between production and IT. His expertise and leadership continue to drive innovation and excellence in the automotive sector.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
