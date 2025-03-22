@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Fix for mobile white space and overflow */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Existing author image styles */
         .author-image {
             width: 200px;
             height: 200px;
@@ -26,6 +36,26 @@
 
         .author-image:hover .profile-img {
             transform: scale(1.05);
+        }
+
+        /* Mobile-specific fixes */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding-left: 15px;
+                padding-right: 15px;
+                box-sizing: border-box;
+            }
+
+            section {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .recommendations-slider {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
         }
     </style>
 </head>
@@ -73,7 +103,7 @@
             </h1>
             <p class="subtitle">An Executive Guide for Scaling AI</p>
             <div class="cta-group">
-                <a href="#contact" class="cta-button">Join the Waitlist</a>
+                <a href="https://a.co/d/i8Ow3V9" target="_blank" rel="noopener noreferrer" class="cta-button">Pre-order Now</a>
                 <a href="#recommendations" class="cta-button secondary">Recommendations</a>
             </div>
         </div>
@@ -133,7 +163,7 @@
                 <div class="service-card" data-aos="fade-up">
                     <i class="fas fa-vector-square"></i>
                     <h3>Data Intensity</h3>
-                    <p>To understand data intensity, the authors present a three-dimensional “QCS Framework,” wherein “QCS” represents “Quality, Compliance, and Speed.”</p>
+                    <p>To understand data intensity, the authors present a three-dimensional "QCS Framework," wherein "QCS" represents "Quality, Compliance, and Speed."</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-cogs"></i>
@@ -153,8 +183,8 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
                     <i class="fas fa-car"></i>
                     <h3>Audi Case Study</h3>
-                    <p>The case study details Audi Production’s journey to provide on-the-ground implementation feedback on
-                        what works and what doesn’t - it offers practical lessons for others
+                    <p>The case study details Audi Production's journey to provide on-the-ground implementation feedback on
+                        what works and what doesn't - it offers practical lessons for others
                         navigating similar terrain.</p>
                 </div>
             </div>
@@ -340,14 +370,6 @@
                     <p><i class="fas fa-envelope"></i> Sujay Dutta: sujayd@gmail.com</p>
                     <p><i class="fas fa-envelope"></i> Siddharth Rajagopal: siddharthrajagopal1985@gmail.com</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Data as the Fourth Pillar. All rights reserved.</p>
@@ -466,7 +488,7 @@
 
         // Countdown Timer
         function updateCountdown() {
-            const targetDate = new Date('September 1, 2025 00:00:00').getTime();
+            const targetDate = new Date('August 27, 2025 00:00:00').getTime();
             
             function update() {
                 const currentDate = new Date().getTime();
