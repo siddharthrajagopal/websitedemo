@@ -2,22 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Data as the Fourth Pillar</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Fix for mobile white space and overflow */
-        html, body {
+        /* Reset and base styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        body {
             overflow-x: hidden;
             width: 100%;
             position: relative;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
 
-        /* Existing author image styles */
+        /* Container control */
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Author image styles */
         .author-image {
             width: 200px;
             height: 200px;
@@ -38,23 +59,58 @@
             transform: scale(1.05);
         }
 
-        /* Mobile-specific fixes */
+        /* Mobile fixes */
         @media screen and (max-width: 768px) {
+            html, body {
+                width: 100%;
+                overflow-x: hidden;
+                position: relative;
+                margin: 0;
+                padding: 0;
+            }
+
             .container {
                 width: 100%;
                 padding-left: 15px;
                 padding-right: 15px;
                 box-sizing: border-box;
+                overflow-x: hidden;
             }
 
             section {
                 width: 100%;
-                box-sizing: border-box;
+                overflow-x: hidden;
+                position: relative;
             }
 
             .recommendations-slider {
-                max-width: 100%;
+                width: 100%;
                 overflow-x: hidden;
+            }
+
+            .authors-grid, 
+            .services-grid, 
+            .personas-grid {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
+
+            .navbar,
+            .hero,
+            .about,
+            .personas,
+            .services,
+            .recommendations,
+            .countdown,
+            .contact,
+            .authors,
+            .case-study-writer,
+            footer {
+                width: 100%;
+                overflow-x: hidden;
+                position: relative;
             }
         }
     </style>
