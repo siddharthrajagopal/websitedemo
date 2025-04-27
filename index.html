@@ -256,7 +256,7 @@
                 <div class="about-text">
                     <p class="highlight-text">This book reasons why Data should be the Fourth Pillar for every enterprise, along with people, processes and technology. It provides the Board, CEOs, and CxOs an understanding of why and how they should treat Data strategically. It provides a comprehensive success by design approach for enterprises and guides them through a Maturity Framework to accelerate their data-centric journey.</p>
                     
-                    <p class="highlight-text">The book covers the "Why", the "What" and the "How" of achieving that goal in measurable terms. To measure the impact provided by the Data pillar, the authors introduce KPIs such as Total Addressable Value through data (TAV) and Expected Addressable Value through data (EAV). The book explores how AI and Data enable and benefit from each other. It provides a case study by <a href="https://www.audi.com/en/company/" target="_blank" rel="noopener noreferrer">Audi AG</a> which brings practical insights into the concepts and frameworks presented.</p>
+                    <p class="highlight-text">The book covers the "Why", the "What" and the "How" of achieving that goal in measurable terms. To measure the impact provided by the Data pillar, the authors introduce KPIs such as Total Addressable Value through data (TAV) and Expected Addressable Value through data (EAV). The book explores how AI and Data enable and benefit from each other. It provides a case study by <a href="#case-study-writer">Rüdiger Eck</a>,  <a href="https://www.audi.com/en/company/" target="_blank" rel="noopener noreferrer">Audi AG</a> which brings practical insights into the concepts and frameworks presented.</p>
                     
                     <p class="highlight-text">This book is a key resource for business executives in SMB and Large Enterprises who need to accelerate business value to their stakeholder communities in a highly complex and hyper-competitive business landscape.</p>
                 </div>
@@ -453,7 +453,7 @@
                         <span class="focus-border"></span>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message (Optional)"></textarea>
+                        <textarea>I would like to join the waitlist to receive additional digital content after the book is launched.</textarea>
                         <span class="focus-border"></span>
                     </div>
                     <button type="submit" class="cta-button">
@@ -686,39 +686,66 @@
 
         updateCountdown();
 
-        // Recommendations Slider
+        // Recommendations Slider - Robust Infinite Loop
         const slider = document.querySelector('.recommendations-slider');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
-        const cardWidth = 430; // card width + gap
+        const cards = slider.querySelectorAll('.recommendation-card');
+        const cardWidth = cards[0].offsetWidth + 30; // card width + gap
 
-        prevBtn.addEventListener('click', () => {
-            slider.scrollLeft -= cardWidth;
-        });
+        // Clone first and last cards for infinite effect
+        const firstClone = cards[0].cloneNode(true);
+        const lastClone = cards[cards.length - 1].cloneNode(true);
+        slider.appendChild(firstClone);
+        slider.insertBefore(lastClone, cards[0]);
+
+        // Set initial scroll position to the first real card
+        slider.scrollLeft = cardWidth;
+
+        let isJumping = false;
 
         nextBtn.addEventListener('click', () => {
-            slider.scrollLeft += cardWidth;
+            slider.scrollTo({
+                left: slider.scrollLeft + cardWidth,
+                behavior: 'smooth'
+            });
         });
 
-        // Auto scroll
+        prevBtn.addEventListener('click', () => {
+            slider.scrollTo({
+                left: slider.scrollLeft - cardWidth,
+                behavior: 'smooth'
+            });
+        });
+
+        slider.addEventListener('scroll', () => {
+            if (isJumping) return;
+            // Right end
+            if (slider.scrollLeft >= cardWidth * (cards.length + 1)) {
+                isJumping = true;
+                slider.scrollTo({ left: cardWidth, behavior: 'auto' });
+                setTimeout(() => { isJumping = false; }, 40);
+            }
+            // Left end
+            else if (slider.scrollLeft <= 0) {
+                isJumping = true;
+                slider.scrollTo({ left: cardWidth * cards.length, behavior: 'auto' });
+                setTimeout(() => { isJumping = false; }, 40);
+            }
+        });
+
+        // Auto scroll (infinite)
         let scrollInterval;
         const startAutoScroll = () => {
             scrollInterval = setInterval(() => {
-                if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
-                    slider.scrollLeft = 0;
-                } else {
-                    slider.scrollLeft += cardWidth;
-                }
+                nextBtn.click();
             }, 5000);
         };
-
         const stopAutoScroll = () => {
             clearInterval(scrollInterval);
         };
-
         slider.addEventListener('mouseenter', stopAutoScroll);
         slider.addEventListener('mouseleave', startAutoScroll);
-
         startAutoScroll();
     </script>
 </body>
