@@ -507,6 +507,7 @@ body {
     border: 2px solid transparent;
     border-radius: 15px;
     font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
     background: rgba(255,255,255,0.9);
     backdrop-filter: blur(10px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -709,6 +710,11 @@ footer {
         margin-bottom: 30px;
     }
 
+    .hero-text {
+        text-align: center;
+        padding-left: 0;
+    }
+
     .pre-order-section .retailer-links {
         flex-direction: row;
         flex-wrap: wrap;
@@ -717,7 +723,12 @@ footer {
     }
     
     .pre-order-section .retailer-link {
-        width: 120px;
+        width: 90px;
+        height: 35px;
+    }
+    
+    .pre-order-section .retailer-link img {
+        max-width: 75px;
     }
 
     .book-cover {
@@ -1297,16 +1308,18 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    box-shadow: none;
     transition: all 0.3s ease;
-    border: 1px solid var(--secondary-color);
+    border: none;
+    padding: 6px 10px;
 }
 
 .pre-order-section .retailer-link:hover {
-    transform: scale(1.25);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transform: scale(1.15);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.8);
 }
 
 .pre-order-section .retailer-link img {
@@ -1314,6 +1327,7 @@ html {
     height: auto;
     object-fit: contain;
     transition: all 0.3s ease;
+    filter: none;
 }
 
 @media (max-width: 768px) {
