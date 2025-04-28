@@ -45,23 +45,24 @@ body {
 .navbar::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -40%;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+    top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
-    animation: navbarShimmer 3s linear infinite;
     z-index: 1;
+    background: repeating-linear-gradient(
+        160deg,
+        rgba(200,200,200,0.07) 0px,
+        rgba(200,200,200,0.07) 2px,
+        transparent 2px,
+        transparent 50px
+    );
+    background-size: 200% 200%;
+    animation: navbarLinesMove 30s linear infinite;
+    opacity: 0.7;
 }
 
-@keyframes navbarShimmer {
-    0% {
-        left: -40%;
-    }
-    100% {
-        left: 100%;
-    }
+@keyframes navbarLinesMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
 }
 
 .navbar .container, .navbar * {
