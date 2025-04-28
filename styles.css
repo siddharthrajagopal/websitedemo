@@ -1026,27 +1026,25 @@ html {
 }
 
 .recommendations-slider {
-    display: flex;
-    gap: 30px;
-    padding: 20px 0;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    overflow: hidden;
+    position: relative;
 }
 
-.recommendations-slider::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
 }
 
 .recommendation-card {
-    min-width: 400px;
     background: white;
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     border: 1px solid var(--secondary-color);
     transition: all 0.3s ease;
+    flex: 0 0 400px;
+    margin-right: 30px;
 }
 
 .recommendation-card:hover {
@@ -1113,7 +1111,8 @@ html {
 
 @media (max-width: 768px) {
     .recommendation-card {
-        min-width: 300px;
+        flex: 0 0 300px;
+        margin-right: 20px;
         padding: 20px;
     }
     
