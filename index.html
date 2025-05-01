@@ -537,12 +537,14 @@
             const body = document.body;
             
             function toggleMenu(event) {
+                event.preventDefault();
                 event.stopPropagation();
                 mobileMenuBtn.classList.toggle('active');
                 navLinks.classList.toggle('active');
                 body.classList.toggle('menu-open');
             }
 
+            mobileMenuBtn.addEventListener('touchstart', toggleMenu);
             mobileMenuBtn.addEventListener('click', toggleMenu);
 
             // Close menu when clicking a link
