@@ -101,11 +101,6 @@
             align-items: center;
             gap: 5px;
             padding: 5px 10px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #007bff;
         }
 
         /* Mobile menu button */
@@ -117,6 +112,30 @@
         @media screen and (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: fixed;
+                top: 60px;  /* Height of navbar */
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: block;
+            }
+
+            .nav-link {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid #eee;
+                width: 100%;
+                text-align: left;
+            }
+
+            .nav-link i {
+                margin-right: 10px;
+                width: 20px;
+                text-align: center;
             }
 
             .mobile-menu-btn {
@@ -127,62 +146,18 @@
                 background: none;
                 border: none;
                 cursor: pointer;
-                z-index: 1001;
             }
 
             .mobile-menu-btn span {
-                position: absolute;
-                width: 100%;
-                height: 3px;
-                background-color: #333;
-                left: 0;
-                transition: transform 0.3s ease;
-            }
-
-            .mobile-menu-btn span:nth-child(1) { top: 0; }
-            .mobile-menu-btn span:nth-child(2) { top: 10px; }
-            .mobile-menu-btn span:nth-child(3) { top: 20px; }
-
-            .mobile-menu-btn.active span:nth-child(1) {
-                transform: rotate(45deg);
-                top: 10px;
-            }
-
-            .mobile-menu-btn.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-menu-btn.active span:nth-child(3) {
-                transform: rotate(-45deg);
-                top: 10px;
-            }
-
-            .nav-links.active {
-                display: block;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: white;
-                padding: 80px 20px 20px;
-                z-index: 1000;
-            }
-
-            .nav-links.active .nav-link {
                 display: block;
                 width: 100%;
-                padding: 15px 0;
-                text-align: center;
-                font-size: 18px;
-                border-bottom: 1px solid #eee;
-                margin-bottom: 10px;
+                height: 2px;
+                background: #333;
+                margin: 6px 0;
+                transition: 0.3s;
             }
 
-            .nav-links.active .nav-link i {
-                margin-right: 10px;
-            }
-
+            /* Prevent scrolling when menu is open */
             body.menu-open {
                 overflow: hidden;
             }
@@ -545,35 +520,37 @@
     <!-- JavaScript for animations -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
             const body = document.body;
-            let isMenuOpen = false;
 
-            function toggleMenu(e) {
-                if (e) {
-                    e.preventDefault();
-                }
-                isMenuOpen = !isMenuOpen;
-                mobileMenuBtn.classList.toggle('active');
+            function toggleMenu() {
                 navLinks.classList.toggle('active');
                 body.classList.toggle('menu-open');
+                
+                // Log for debugging
+                console.log('Menu toggled');
+                console.log('Menu active:', navLinks.classList.contains('active'));
             }
 
-            mobileMenuBtn.addEventListener('click', toggleMenu);
+            // Handle menu button clicks
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleMenu();
+            });
 
-            // Close menu when clicking a link
+            // Handle menu item clicks
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (isMenuOpen) {
-                        toggleMenu();
-                    }
+                link.addEventListener('click', function() {
+                    toggleMenu();
                 });
             });
 
             // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (isMenuOpen && !navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            document.addEventListener('click', function(e) {
+                if (navLinks.classList.contains('active') && 
+                    !navLinks.contains(e.target) && 
+                    !menuBtn.contains(e.target)) {
                     toggleMenu();
                 }
             });
