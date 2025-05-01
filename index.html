@@ -108,44 +108,25 @@
             display: none;
         }
 
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+        }
+
         /* Mobile styles */
         @media screen and (max-width: 768px) {
             .nav-links {
                 display: none;
-                position: fixed;
-                top: 60px;  /* Height of navbar */
-                left: 0;
-                width: 100%;
-                background: white;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                display: block;
-            }
-
-            .nav-link {
-                display: block;
-                padding: 15px 20px;
-                border-bottom: 1px solid #eee;
-                width: 100%;
-                text-align: left;
-            }
-
-            .nav-link i {
-                margin-right: 10px;
-                width: 20px;
-                text-align: center;
             }
 
             .mobile-menu-btn {
                 display: block;
                 width: 30px;
                 height: 24px;
-                position: relative;
                 background: none;
                 border: none;
                 cursor: pointer;
+                padding: 0;
             }
 
             .mobile-menu-btn span {
@@ -153,13 +134,37 @@
                 width: 100%;
                 height: 2px;
                 background: #333;
-                margin: 6px 0;
-                transition: 0.3s;
+                margin: 5px 0;
             }
 
-            /* Prevent scrolling when menu is open */
-            body.menu-open {
-                overflow: hidden;
+            .mobile-menu {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 10px 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+
+            .mobile-menu a {
+                display: block;
+                padding: 15px 20px;
+                text-decoration: none;
+                color: #333;
+                border-bottom: 1px solid #eee;
+            }
+
+            .mobile-menu a i {
+                margin-right: 10px;
+                width: 20px;
+                text-align: center;
             }
         }
     </style>
@@ -174,6 +179,7 @@
                 <span></span>
                 <span></span>
             </button>
+            <!-- Desktop menu -->
             <div class="nav-links">
                 <a href="#about" class="nav-link">
                     <i class="fas fa-book"></i>
@@ -198,6 +204,30 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu">
+        <a href="#about">
+            <i class="fas fa-book"></i>
+            <span>About the Book</span>
+        </a>
+        <a href="#personas">
+            <i class="fas fa-users"></i>
+            <span>Key Personas</span>
+        </a>
+        <a href="#themes">
+            <i class="fas fa-layer-group"></i>
+            <span>Key Themes</span>
+        </a>
+        <a href="#recommendations">
+            <i class="fas fa-star"></i>
+            <span>Recommendations</span>
+        </a>
+        <a href="#authors">
+            <i class="fas fa-feather"></i>
+            <span>About the Authors</span>
+        </a>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -521,37 +551,26 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            const body = document.body;
+            const mobileMenu = document.querySelector('.mobile-menu');
 
-            function toggleMenu() {
-                navLinks.classList.toggle('active');
-                body.classList.toggle('menu-open');
-                
-                // Log for debugging
-                console.log('Menu toggled');
-                console.log('Menu active:', navLinks.classList.contains('active'));
-            }
-
-            // Handle menu button clicks
+            // Toggle menu
             menuBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                toggleMenu();
+                mobileMenu.classList.toggle('active');
+                console.log('Menu clicked, active:', mobileMenu.classList.contains('active')); // Debug log
             });
 
-            // Handle menu item clicks
-            document.querySelectorAll('.nav-link').forEach(link => {
+            // Close menu when clicking a link
+            document.querySelectorAll('.mobile-menu a').forEach(link => {
                 link.addEventListener('click', function() {
-                    toggleMenu();
+                    mobileMenu.classList.remove('active');
                 });
             });
 
             // Close menu when clicking outside
             document.addEventListener('click', function(e) {
-                if (navLinks.classList.contains('active') && 
-                    !navLinks.contains(e.target) && 
-                    !menuBtn.contains(e.target)) {
-                    toggleMenu();
+                if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
                 }
             });
         });
