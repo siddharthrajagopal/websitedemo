@@ -1,63 +1,48 @@
 // Analytics tracking
 class Analytics {
     constructor() {
-        this.visitData = JSON.parse(localStorage.getItem('visitData')) || {
-            totalVisits: 0,
-            lastVisit: null,
-            visitHistory: [],
-            pageViews: {}
-        };
+        this.serverUrl = 'http://localhost:3000'; // Change this to your server URL when deployed
         this.initializeVisit();
     }
 
-    initializeVisit() {
-        const now = new Date();
-        const today = now.toISOString().split('T')[0];
-        
-        // Update total visits
-        this.visitData.totalVisits++;
-        
-        // Update last visit
-        this.visitData.lastVisit = now.toISOString();
-        
-        // Add to visit history
-        this.visitData.visitHistory.push({
-            timestamp: now.toISOString(),
-            page: window.location.pathname,
-            referrer: document.referrer || 'direct'
-        });
-        
-        // Keep only last 100 visits
-        if (this.visitData.visitHistory.length > 100) {
-            this.visitData.visitHistory.shift();
+    async initializeVisit() {
+        try {
+            const response = await fetch(`${this.serverUrl}/api/track-visit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    page: window.location.pathname,
+                    referrer: document.referrer || 'direct'
+                })
+            });
+            
+            if (!response.ok) {
+                console.error('Failed to track visit');
+            }
+        } catch (error) {
+            console.error('Error tracking visit:', error);
         }
-        
-        // Update page views
-        const currentPage = window.location.pathname;
-        this.visitData.pageViews[currentPage] = (this.visitData.pageViews[currentPage] || 0) + 1;
-        
-        // Save to localStorage
-        localStorage.setItem('visitData', JSON.stringify(this.visitData));
     }
 
-    getAnalytics() {
-        return this.visitData;
-    }
-
-    getPageViews() {
-        return this.visitData.pageViews;
-    }
-
-    getVisitHistory() {
-        return this.visitData.visitHistory;
-    }
-
-    getTotalVisits() {
-        return this.visitData.totalVisits;
-    }
-
-    getLastVisit() {
-        return this.visitData.lastVisit;
+    async getAnalytics() {
+        try {
+            const response = await fetch(`${this.serverUrl}/api/analytics`, {
+                headers: {
+                    'x-admin-key': 'Sujay&Sidd'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch analytics');
+            }
+            
+            return await response.json();
+        } catch (error) {
+            console.error('Error getting analytics:', error);
+            return null;
+        }
     }
 }
 
@@ -65,10 +50,15 @@ class Analytics {
 const analytics = new Analytics();
 
 // Admin dashboard functionality
-function showAnalytics() {
+async function showAnalytics() {
     const adminKey = prompt('Enter admin key:');
-    if (adminKey === 'Sujay&Sidd') { // Change this to your desired admin key
-        const analyticsData = analytics.getAnalytics();
+    if (adminKey === 'Sujay&Sidd') {
+        const analyticsData = await analytics.getAnalytics();
+        if (!analyticsData) {
+            alert('Failed to load analytics data');
+            return;
+        }
+
         const dashboard = document.createElement('div');
         dashboard.className = 'analytics-dashboard';
         dashboard.innerHTML = `
@@ -102,6 +92,8 @@ function showAnalytics() {
                                     ${new Date(visit.timestamp).toLocaleString()} - 
                                     ${visit.page} 
                                     (from: ${visit.referrer})
+                                    <br>
+                                    <small>IP: ${visit.ip}</small>
                                 </li>
                             `)
                             .join('')}

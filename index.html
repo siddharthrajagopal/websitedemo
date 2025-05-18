@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCMGH12QPR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NCMGH12QPR');
+    </script>
     <title>Data as the Fourth Pillar</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script src="assets/js/analytics.js"></script>
     <style>
         /* Reset and base styles */
         *, *::before, *::after {
@@ -171,12 +178,6 @@
     </style>
 </head>
 <body>
-    <!-- Admin Analytics Button -->
-    <button onclick="showAnalytics()" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; opacity: 0.8; transition: all 0.3s; background: var(--accent-color); color: white; border: none; border-radius: 25px; padding: 10px 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; font-family: 'Roboto', sans-serif; font-size: 14px;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-        <i class="fas fa-chart-line"></i>
-        <span>Analytics</span>
-    </button>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -246,7 +247,7 @@
                     </div>
                     <div class="pre-order-section">
                         <div class="retailer-links">
-                            <a href="https://a.co/d/7ZjIb8J" class="retailer-link" target="_blank" rel="noopener noreferrer">
+                            <a href="https://a.co/d/j6zsqY0" class="retailer-link" target="_blank" rel="noopener noreferrer">
                                 <img src="assets/amazon-logo.png" alt="Amazon">
                             </a>
                             <a href="https://www.waterstones.com/book/data-as-the-fourth-pillar/sujay-dutta/siddharth-rajagopal/9781032835990" class="retailer-link" target="_blank" rel="noopener noreferrer">
@@ -567,13 +568,16 @@
 
     <!-- JavaScript for animations -->
     <script>
+        // Mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const body = document.body;
 
             // Toggle menu
-            menuBtn.addEventListener('click', function(e) {
+            mobileMenuBtn.addEventListener('click', function(e) {
                 e.preventDefault();
+                const mobileMenu = document.querySelector('.mobile-menu');
                 mobileMenu.classList.toggle('active');
                 console.log('Menu clicked, active:', mobileMenu.classList.contains('active')); // Debug log
             });
@@ -581,13 +585,15 @@
             // Close menu when clicking a link
             document.querySelectorAll('.mobile-menu a').forEach(link => {
                 link.addEventListener('click', function() {
+                    const mobileMenu = document.querySelector('.mobile-menu');
                     mobileMenu.classList.remove('active');
                 });
             });
 
             // Close menu when clicking outside
             document.addEventListener('click', function(e) {
-                if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+                    const mobileMenu = document.querySelector('.mobile-menu');
                     mobileMenu.classList.remove('active');
                 }
             });
