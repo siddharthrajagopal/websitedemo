@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="assets/js/analytics.js"></script>
     <style>
         /* Reset and base styles */
         *, *::before, *::after {
@@ -170,6 +171,12 @@
     </style>
 </head>
 <body>
+    <!-- Admin Analytics Button -->
+    <button onclick="showAnalytics()" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; opacity: 0.8; transition: all 0.3s; background: var(--accent-color); color: white; border: none; border-radius: 25px; padding: 10px 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; font-family: 'Roboto', sans-serif; font-size: 14px;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+        <i class="fas fa-chart-line"></i>
+        <span>Analytics</span>
+    </button>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -275,7 +282,7 @@
                 <div class="about-text">
                     <p class="highlight-text">This book reasons why Data should be the Fourth Pillar for every enterprise, along with people, processes and technology. It provides the Board, CEOs, and CxOs an understanding of why and how they should treat Data strategically. It provides a comprehensive success by design approach for enterprises and guides them through a Maturity Framework to accelerate their data-centric journey.</p>
                     
-                    <p class="highlight-text">The book covers the "Why", the "What" and the "How" of achieving that goal in measurable terms. To measure the impact provided by the Data pillar, the authors introduce KPIs such as Total Addressable Value through data (TAV) and Expected Addressable Value through data (EAV). The book explores how AI and Data enable and benefit from each other. It provides a case study by <a href="#case-study-writer">Rüdiger Eck</a>,  <a href="https://www.audi.com/en/company/" target="_blank" rel="noopener noreferrer">AUDI AG</a> which brings practical insights into the concepts and frameworks presented.</p>
+                    <p class="highlight-text">The book covers the "Why", the "What" and the "How" of achieving that goal in measurable terms. To measure the impact provided by the Data pillar, the authors introduce KPIs such as Total Addressable Value through data (TAV) and Expected Addressable Value through data (EAV). The book explores how AI and Data enable and benefit from each other. It provides a case study by <a href="#case-study-writer">Rüdiger Eck</a>,  <a href="https://www.audi.com/en/company/" target="_blank" rel="noopener noreferrer">Audi AG</a> which brings practical insights into the concepts and frameworks presented.</p>
                     
                     <p class="highlight-text">This book is a key resource for business executives in SMB and Large Enterprises who need to accelerate business value to their stakeholder communities in a highly complex and hyper-competitive business landscape.</p>
                 </div>
@@ -411,7 +418,7 @@
                             <p>"This book stands out because it introduces a viable model filled with actionable concepts that can be readily implemented."</p>
                             <div class="recommender">
                                 <h4>Rüdiger Eck</h4>
-                                <p>Head of Data and Analytics Factory for Production & Logistics at AUDI AG, Germany</p>
+                                <p>Head of Data and Analytics Factory for Production & Logistics at Audi AG, Germany</p>
                             </div>
                         </div>
                     </div>
@@ -530,7 +537,7 @@
             <div class="authors-grid">
                 <div class="author-card">
                     <div class="author-image">
-                        <img src="assets/rudiger-eck.jpg" alt="Rüdiger Eck - Head of Data and Analytics Factory at AUDI AG" class="profile-img">
+                        <img src="assets/rudiger-eck.jpg" alt="Rüdiger Eck - Head of Data and Analytics Factory at Audi AG" class="profile-img">
                     </div>
                     <div class="author-info">
                         <h3><a href="https://www.linkedin.com/in/ruediger-eck-70269571/" target="_blank" rel="noopener noreferrer">Rüdiger Eck</a></h3>
