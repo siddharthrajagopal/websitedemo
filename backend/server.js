@@ -20,7 +20,8 @@ if (!fs.existsSync(ANALYTICS_FILE)) {
         totalVisits: 0,
         lastVisit: null,
         visitHistory: [],
-        pageViews: {}
+        pageViews: {},
+        videoEvents: []
     }));
 }
 
@@ -61,6 +62,35 @@ app.post('/api/track-visit', (req, res) => {
     } catch (error) {
         console.error('Error tracking visit:', error);
         res.status(500).json({ error: 'Failed to track visit' });
+    }
+});
+
+// Track video event endpoint
+app.post('/api/track-video-event', (req, res) => {
+    try {
+        const analytics = JSON.parse(fs.readFileSync(ANALYTICS_FILE));
+        const { eventType, videoId, videoTitle, currentTime, duration, timestamp } = req.body;
+        analytics.videoEvents = analytics.videoEvents || [];
+        analytics.videoEvents.push({
+            eventType,
+            videoId,
+            videoTitle,
+            currentTime,
+            duration,
+            timestamp: timestamp || new Date().toISOString(),
+            page: req.body.page || req.headers.referer || '',
+            userAgent: req.headers['user-agent'],
+            ip: req.ip
+        });
+        // Keep only last 1000 video events
+        if (analytics.videoEvents.length > 1000) {
+            analytics.videoEvents = analytics.videoEvents.slice(-1000);
+        }
+        fs.writeFileSync(ANALYTICS_FILE, JSON.stringify(analytics, null, 2));
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error tracking video event:', error);
+        res.status(500).json({ error: 'Failed to track video event' });
     }
 });
 

@@ -44,6 +44,31 @@ class Analytics {
             return null;
         }
     }
+
+    async trackVideoEvent({ eventType, videoId, videoTitle, currentTime, duration }) {
+        try {
+            const response = await fetch(`${this.serverUrl}/api/track-video-event`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    eventType,
+                    videoId,
+                    videoTitle,
+                    currentTime,
+                    duration,
+                    page: window.location.pathname,
+                    timestamp: new Date().toISOString()
+                })
+            });
+            if (!response.ok) {
+                console.error('Failed to track video event');
+            }
+        } catch (error) {
+            console.error('Error tracking video event:', error);
+        }
+    }
 }
 
 // Initialize analytics

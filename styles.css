@@ -1513,4 +1513,67 @@ html {
     .stat-box p {
         font-size: 1.5rem;
     }
+}
+
+/* Video Interviews Section */
+.video-interviews {
+    background: #fff;
+    padding: 60px 0 40px 0;
+}
+
+.video-interviews h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+}
+
+.video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.video-item {
+    background: #f8f9fa;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    padding: 24px 20px 16px 20px;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s;
+}
+
+.video-item:hover {
+    box-shadow: 0 8px 32px rgba(157,31,30,0.12);
+}
+
+.video-item video {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    background: #000;
+    max-width: 380px;
+}
+
+.video-description {
+    font-size: 1.1rem;
+    color: #333;
+    text-align: center;
+    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .video-gallery {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .video-item {
+        max-width: 100%;
+        padding: 16px 6px 10px 6px;
+    }
 } 

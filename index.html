@@ -642,6 +642,22 @@
         </div>
     </section>
 
+    <!-- Video Interviews Section -->
+    <section id="video-interviews" class="video-interviews">
+        <div class="container">
+            <h2>Expert Discussions</h2>
+            <div class="video-gallery">
+                <div class="video-item">
+                    <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
+                        <iframe id="randy-bean-youtube" src="https://www.youtube.com/embed/WjbHA-o-Bpo" title="Interview with Randy Bean" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                    </div>
+                    <p class="video-description">Expert Discussion with Randy Bean</p>
+                </div>
+                <!-- Add more video-item divs here for future interviews -->
+            </div>
+        </div>
+    </section>
+
     <!-- Countdown Timer Section -->
     <section class="countdown">
         <div class="container">
@@ -1000,6 +1016,25 @@
         });
         setupCarousel();
         startAutoScroll();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // YouTube analytics tracking (basic: track iframe load as a view)
+            const ytIframe = document.getElementById('randy-bean-youtube');
+            if (ytIframe && typeof analytics !== 'undefined') {
+                ytIframe.addEventListener('load', function() {
+                    analytics.trackVideoEvent({
+                        eventType: 'youtube_view',
+                        videoId: 'randy-bean-youtube',
+                        videoTitle: 'Interview with Randy Bean',
+                        currentTime: 0,
+                        duration: 0
+                    });
+                });
+            }
+            // For advanced YouTube analytics (play, pause, watch time), YouTube IFrame API is needed
+            // If you want this, let me know and I can implement it
+        });
     </script>
+    <script src="assets/js/analytics.js"></script>
 </body>
 </html> 
