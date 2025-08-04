@@ -199,6 +199,60 @@
             }
         }
 
+        /* Video carousel styles */
+        .video-carousel {
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .video-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+            gap: 32px;
+        }
+
+        .video-item {
+            flex: 0 0 380px;
+            margin: 0;
+        }
+
+        .video-slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .video-prev-btn,
+        .video-next-btn {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .video-prev-btn:hover,
+        .video-next-btn:hover {
+            background: #34495e;
+            transform: scale(1.1);
+        }
+
+        .video-prev-btn:disabled,
+        .video-next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* Recommendation card styles */
         .recommender {
             display: flex;
@@ -356,7 +410,7 @@
                     <p class="subtitle">An Executive Guide for Scaling AI</p>
                     <div class="cta-group">
                         <a href="#recommendations" class="cta-button">Recommendations</a>
-                        <a href="#contact" class="cta-button secondary">Join the Waitlist</a>
+                        <a href="#contact" class="cta-button secondary">Sign-up for Discount Code</a>
                     </div>
                 </div>
             </div>
@@ -659,25 +713,37 @@
     <section id="video-interviews" class="video-interviews">
         <div class="container">
             <h2 style="font-size:2.5rem;margin-bottom:40px;text-align:center;color:#2c3e50;">Expert Discussions</h2>
-            <div class="video-gallery" style="display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 32px; padding-bottom: 12px;">
-                <div class="video-item" style="flex: 0 0 auto; width: 380px;">
-                    <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
-                        <iframe id="randy-bean-youtube" src="https://www.youtube.com/embed/WjbHA-o-Bpo" title="Interview with Randy Bean" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+            <div class="video-carousel">
+                <div class="video-track">
+                    <div class="video-item" style="flex: 0 0 auto; width: 380px;">
+                        <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
+                            <iframe id="randy-bean-youtube" src="https://www.youtube.com/embed/WjbHA-o-Bpo" title="Interview with Randy Bean" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                        </div>
+                        <p class="video-description">Expert Discussion with <a href="https://www.linkedin.com/in/randybeannvp/" target="_blank" rel="noopener noreferrer">Randy Bean</a></p>
                     </div>
-                    <p class="video-description">Expert Discussion with <a href="https://www.linkedin.com/in/randybeannvp/" target="_blank" rel="noopener noreferrer">Randy Bean</a></p>
-                </div>
-                <div class="video-item" style="flex: 0 0 auto; width: 380px;">
-                    <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
-                        <iframe id="marc-beierschoder-youtube" src="https://www.youtube.com/embed/1E7RkPJaOBE" title="Interview with Marc Beierschoder" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                    <div class="video-item" style="flex: 0 0 auto; width: 380px;">
+                        <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
+                            <iframe id="marc-beierschoder-youtube" src="https://www.youtube.com/embed/1E7RkPJaOBE" title="Interview with Marc Beierschoder" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                        </div>
+                        <p class="video-description">Expert Discussion with <a href="https://www.linkedin.com/in/marc-beierschoder/" target="_blank" rel="noopener noreferrer">Marc Beierschoder</a></p>
                     </div>
-                    <p class="video-description">Expert Discussion with <a href="https://www.linkedin.com/in/marc-beierschoder/" target="_blank" rel="noopener noreferrer">Marc Beierschoder</a></p>
-                </div>
-                <div class="video-item" style="flex: 0 0 auto; width: 380px;">
-                    <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
-                        <iframe id="matt-preschern-youtube" src="https://www.youtube.com/embed/du1gbWv8ZKk" title="Interview with Matt Preschern" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                    <div class="video-item" style="flex: 0 0 auto; width: 380px;">
+                        <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
+                            <iframe id="matt-preschern-youtube" src="https://www.youtube.com/embed/du1gbWv8ZKk" title="Interview with Matt Preschern" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                        </div>
+                        <p class="video-description">Expert Discussion with <a href="https://www.linkedin.com/in/matt-preschern/" target="_blank" rel="noopener noreferrer">Matt Preschern</a></p>
                     </div>
-                    <p class="video-description">Expert Discussion with <a href="https://www.linkedin.com/in/matt-preschern/" target="_blank" rel="noopener noreferrer">Matt Preschern</a></p>
+                    <div class="video-item" style="flex: 0 0 auto; width: 380px;">
+                        <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
+                            <iframe id="seth-earley-youtube" src="https://www.youtube.com/embed/Vq_kc4JHJNg" title="Interview with Seth Earley" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                        </div>
+                        <p class="video-description">Expert Discussion with <a href="https://www.linkedin.com/in/sethearley/" target="_blank" rel="noopener noreferrer">Seth Earley</a></p>
+                    </div>
                 </div>
+            </div>
+            <div class="video-slider-nav">
+                <button class="video-prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="video-next-btn"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
@@ -692,7 +758,7 @@
                     <a href="https://data-as-the-fourth-pillar-for-ai-first-growth.confetti.events/" target="_blank" rel="noopener noreferrer" class="event-logo-link">
                         <img src="assets/recommenders/epicenter-stockholm-logo.png" alt="Epicenter Stockholm Logo" style="max-width: 260px; width:100%; display: block; margin: 0 auto 18px; border-radius: 16px; background: #fff;" />
                     </a>
-                    <h3 style="text-align:center;">Epicenter Stockholm: Data as the Fourth Pillar for AI-First Growth</h3>
+                    <h3 style="text-align:center;">Epicenter Stockholm:<br>Data as the Fourth Pillar for AI-First Growth</h3>
                     <p style="text-align:center;"><strong>Lunch Lecture</strong></p>
                     <p style="text-align:center;"><strong>Date:</strong> 4 September 2025, 11:30–13:00</p>
                     <a href="https://data-as-the-fourth-pillar-for-ai-first-growth.confetti.events/" target="_blank" rel="noopener noreferrer" class="cta-button" style="display:inline-block;margin-top:12px;">Sign Up</a>
@@ -702,7 +768,7 @@
                     <a href="https://www.bigdataldn.com/" target="_blank" rel="noopener noreferrer" class="event-logo-link">
                         <img src="assets/recommenders/big-data-london-logo.png" alt="Big Data London Logo" style="width:260px; height:160px; object-fit:cover; object-position:center; display:block; margin:0 auto 18px; border-radius:16px; background:#fff;" />
                     </a>
-                    <h3 style="text-align:center;">Big Data London (VIP Theatre): Data as the Fourth Pillar</h3>
+                    <h3 style="text-align:center;">Big Data London (VIP Theatre):<br>Data as the Fourth Pillar</h3>
                     <p style="text-align:center;"><strong>Date:</strong> 24 September 2025, 10:40–11:10</p>
                     <a href="https://www.bigdataldn.com/" target="_blank" rel="noopener noreferrer" class="cta-button" style="display:inline-block;margin-top:12px;">Sign Up</a>
                 </div>
@@ -738,7 +804,7 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Join the Waitlist</h2>
+            <h2>Sign-up for Discount Code</h2>
             <div class="contact-form">
                 <form id="contactForm">
                     <div class="form-group">
@@ -750,11 +816,11 @@
                         <span class="focus-border"></span>
                     </div>
                     <div class="form-group">
-                        <textarea>I would like to join the waitlist to receive additional digital content after the book is launched.</textarea>
+                        <textarea>Add your reason to Why Data should be made the Fourth Pillar</textarea>
                         <span class="focus-border"></span>
                     </div>
                     <button type="submit" class="cta-button">
-                        <span>Join Now</span>
+                        <span>Sign-Up</span>
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </form>
@@ -911,12 +977,12 @@
                 });
 
                 // Show success message
-                button.innerHTML = '<i class="fas fa-check"></i> Joined!';
+                button.innerHTML = '<i class="fas fa-check"></i> Signed Up!';
                 button.classList.add('success');
 
                 // Reset form after 2 seconds
                 setTimeout(() => {
-                    button.innerHTML = '<span>Join Now</span><i class="fas fa-arrow-right"></i>';
+                    button.innerHTML = '<span>Sign Up</span><i class="fas fa-arrow-right"></i>';
                     button.classList.remove('success');
                     button.disabled = false;
                     form.reset();
@@ -926,7 +992,7 @@
                 button.innerHTML = '<i class="fas fa-times"></i> Error!';
                 button.style.backgroundColor = '#e74c3c';
                 setTimeout(() => {
-                    button.innerHTML = '<span>Join Now</span><i class="fas fa-arrow-right"></i>';
+                    button.innerHTML = '<span>Sign Up</span><i class="fas fa-arrow-right"></i>';
                     button.style.backgroundColor = '';
                     button.disabled = false;
                 }, 2000);
@@ -1068,6 +1134,93 @@
         });
         setupCarousel();
         startAutoScroll();
+
+        // --- Video Carousel Setup ---
+        const videoTrack = document.querySelector('.video-track');
+        const videoPrevBtn = document.querySelector('.video-prev-btn');
+        const videoNextBtn = document.querySelector('.video-next-btn');
+        let videoItems = Array.from(videoTrack.children);
+
+        function getVideoItemWidth() {
+            return videoItems[0].offsetWidth + parseInt(getComputedStyle(videoItems[0]).marginRight || 0);
+        }
+        function getVisibleVideoCount() {
+            return Math.floor(document.querySelector('.video-carousel').offsetWidth / getVideoItemWidth());
+        }
+
+        let videoItemWidth, visibleVideoCount, totalVideoItems, currentVideoIndex;
+
+        function setupVideoCarousel() {
+            // Remove all clones
+            while (videoTrack.children.length > videoItems.length) {
+                videoTrack.removeChild(videoTrack.firstChild);
+            }
+            while (videoTrack.children.length > videoItems.length) {
+                videoTrack.removeChild(videoTrack.lastChild);
+            }
+            // Recalculate
+            videoItems = Array.from(videoTrack.children);
+            videoItemWidth = getVideoItemWidth();
+            visibleVideoCount = getVisibleVideoCount();
+
+            // Clone slides for infinite effect
+            for (let i = 0; i < visibleVideoCount; i++) {
+                videoTrack.appendChild(videoItems[i].cloneNode(true)); // append clones to end
+                videoTrack.insertBefore(videoItems[videoItems.length - 1 - i].cloneNode(true), videoTrack.firstChild); // prepend clones to start
+            }
+            totalVideoItems = videoTrack.children.length;
+            currentVideoIndex = visibleVideoCount; // Start at the first real card
+            updateVideoCarousel(false);
+        }
+
+        function updateVideoCarousel(animate = true) {
+            if (!animate) videoTrack.style.transition = 'none';
+            else videoTrack.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+            videoTrack.style.transform = `translateX(${-currentVideoIndex * videoItemWidth}px)`;
+            if (!animate) setTimeout(() => videoTrack.style.transition = '', 20);
+        }
+
+        // Video Navigation
+        videoNextBtn.addEventListener('click', () => {
+            currentVideoIndex++;
+            updateVideoCarousel();
+            if (currentVideoIndex === totalVideoItems - visibleVideoCount) {
+                setTimeout(() => {
+                    currentVideoIndex = visibleVideoCount;
+                    updateVideoCarousel(false);
+                }, 500);
+            }
+        });
+        videoPrevBtn.addEventListener('click', () => {
+            currentVideoIndex--;
+            updateVideoCarousel();
+            if (currentVideoIndex === 0) {
+                setTimeout(() => {
+                    currentVideoIndex = totalVideoItems - 2 * visibleVideoCount;
+                    updateVideoCarousel(false);
+                }, 500);
+            }
+        });
+
+        // Video Auto-scroll
+        let videoScrollInterval;
+        function startVideoAutoScroll() {
+            videoScrollInterval = setInterval(() => {
+                videoNextBtn.click();
+            }, 6000);
+        }
+        function stopVideoAutoScroll() {
+            clearInterval(videoScrollInterval);
+        }
+        videoTrack.addEventListener('mouseenter', stopVideoAutoScroll);
+        videoTrack.addEventListener('mouseleave', startVideoAutoScroll);
+
+        // Responsive: rebuild video carousel on resize
+        window.addEventListener('resize', () => {
+            setupVideoCarousel();
+        });
+        setupVideoCarousel();
+        startVideoAutoScroll();
 
         document.addEventListener('DOMContentLoaded', function() {
             // YouTube analytics tracking (basic: track iframe load as a view)
