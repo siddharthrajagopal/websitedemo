@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    <title>Data Management Assessment - Data as the Fourth Pillar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #FEFEF4;
+            --secondary-color: #e6e6d8;
+            --accent-color: #9D1F1E;
+            --text-color: #333333;
+            --light-text: #666666;
+            --background-color: #ffffff;
+            --hover-color: #9D1F1E;
+        }
+
+        /* Reset and base styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            padding: 80px 0 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 15px 25px;
+            background-color: var(--accent-color);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            background-color: var(--hover-color);
+        }
+
+        /* Main content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        /* Form section */
+        .form-section {
+            background-color: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .form-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .form-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input[type="range"]:hover {
+            background: #d0d0d0;
+        }
+
+        .form-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .form-group input[type="range"]::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input[type="range"]::-moz-range-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .value-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .value-display span {
+            font-weight: 500;
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            background-color: var(--hover-color);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Chart section */
+        .chart-section {
+            background-color: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .chart-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .chart-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .no-data-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            color: var(--light-text);
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .no-data-message i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0.5;
+            color: var(--accent-color);
+        }
+
+        /* Results section */
+        .results-section {
+            background-color: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 40px;
+            grid-column: 1 / -1;
+            transition: all 0.3s ease;
+        }
+
+        .results-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .results-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .result-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .result-item h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .result-item p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .score-high {
+            border-left-color: #e74c3c;
+        }
+
+        .score-medium {
+            border-left-color: #f39c12;
+        }
+
+        .score-low {
+            border-left-color: #27ae60;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-section, .chart-section, .results-section {
+                padding: 25px;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Main Page
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1>Data Management Assessment</h1>
+            <p>Evaluate your organization's data management challenges across key dimensions</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2>Rate Your Challenges</h2>
+                <form id="assessmentForm">
+                    <div class="form-group">
+                        <label for="business-execution">Pressure of Business Execution</label>
+                        <input type="range" id="business-execution" name="business-execution" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="business-execution-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regulatory-compliance">Complying with Regulatory Requirements</label>
+                        <input type="range" id="regulatory-compliance" name="regulatory-compliance" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="regulatory-compliance-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business-value">Difficulty to Quantify Business Value</label>
+                        <input type="range" id="business-value" name="business-value" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="business-value-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resource-prioritization">Prioritization of Resources</label>
+                        <input type="range" id="resource-prioritization" name="resource-prioritization" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="resource-prioritization-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role-clarity">Lack of Role Clarity for Managing Data</label>
+                        <input type="range" id="role-clarity" name="role-clarity" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="role-clarity-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="talent-challenges">Talent and Cultural Challenges</label>
+                        <input type="range" id="talent-challenges" name="talent-challenges" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="talent-challenges-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-growth">Complexity due to Data Growth</label>
+                        <input type="range" id="data-growth" name="data-growth" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="data-growth-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="technology-complexity">Technology Complexities</label>
+                        <input type="range" id="technology-complexity" name="technology-complexity" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="technology-complexity-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-silos">Growing Data Silos</label>
+                        <input type="range" id="data-silos" name="data-silos" min="0" max="10" value="5" step="1">
+                        <div class="value-display">
+                            <span>Low</span>
+                            <span id="data-silos-value">5</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-chart-line"></i> Generate Assessment
+                    </button>
+                </form>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="chart-section">
+                <h2>Your Assessment Results</h2>
+                <div class="chart-container">
+                    <div class="no-data-message" id="noDataMessage">
+                        <div>
+                            <i class="fas fa-chart-pie"></i>
+                            <p>Complete the form to see your<br>spider web chart results</p>
+                        </div>
+                    </div>
+                    <canvas id="radarChart" style="display: none;"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Analysis Section -->
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <h2>Assessment Analysis</h2>
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let radarChart = null;
+
+        // Update value displays when sliders change
+        document.querySelectorAll('input[type="range"]').forEach(input => {
+            input.addEventListener('input', function() {
+                const valueDisplay = document.getElementById(this.id + '-value');
+                valueDisplay.textContent = this.value;
+            });
+        });
+
+        // Form submission
+        document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateChart();
+        });
+
+        function generateChart() {
+            // Get all form values
+            const values = {
+                'Business Execution': parseInt(document.getElementById('business-execution').value),
+                'Regulatory Compliance': parseInt(document.getElementById('regulatory-compliance').value),
+                'Business Value Quantification': parseInt(document.getElementById('business-value').value),
+                'Resource Prioritization': parseInt(document.getElementById('resource-prioritization').value),
+                'Role Clarity': parseInt(document.getElementById('role-clarity').value),
+                'Talent & Culture': parseInt(document.getElementById('talent-challenges').value),
+                'Data Growth Complexity': parseInt(document.getElementById('data-growth').value),
+                'Technology Complexity': parseInt(document.getElementById('technology-complexity').value),
+                'Data Silos': parseInt(document.getElementById('data-silos').value)
+            };
+
+            // Hide no data message and show chart
+            document.getElementById('noDataMessage').style.display = 'none';
+            document.getElementById('radarChart').style.display = 'block';
+
+            // Destroy existing chart if it exists
+            if (radarChart) {
+                radarChart.destroy();
+            }
+
+            // Create new chart
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: Object.keys(values),
+                                            datasets: [{
+                            label: 'Your Assessment Score',
+                            data: Object.values(values),
+                            backgroundColor: 'rgba(157, 31, 30, 0.2)',
+                            borderColor: 'rgba(157, 31, 30, 1)',
+                            borderWidth: 3,
+                            pointBackgroundColor: 'rgba(157, 31, 30, 1)',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 10,
+                            min: 0,
+                            ticks: {
+                                stepSize: 2,
+                                font: {
+                                    size: 12
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 11,
+                                    weight: 'bold'
+                                },
+                                color: '#2c3e50'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#9D1F1E',
+                            borderWidth: 1
+                        }
+                    }
+                }
+            });
+
+            // Generate results analysis
+            generateResultsAnalysis(values);
+        }
+
+        function generateResultsAnalysis(values) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsGrid = document.getElementById('resultsGrid');
+            
+            resultsSection.style.display = 'block';
+            resultsGrid.innerHTML = '';
+
+            // Calculate overall score
+            const totalScore = Object.values(values).reduce((sum, score) => sum + score, 0);
+            const averageScore = totalScore / Object.keys(values).length;
+
+            // Add overall assessment
+            const overallItem = document.createElement('div');
+            overallItem.className = 'result-item';
+            overallItem.innerHTML = `
+                <h4>Overall Assessment</h4>
+                <p>Your organization's average challenge score is <strong>${averageScore.toFixed(1)}/10</strong>.</p>
+                <p>${getOverallRecommendation(averageScore)}</p>
+            `;
+            resultsGrid.appendChild(overallItem);
+
+            // Add individual category analysis
+            Object.entries(values).forEach(([category, score]) => {
+                const resultItem = document.createElement('div');
+                resultItem.className = `result-item ${getScoreClass(score)}`;
+                resultItem.innerHTML = `
+                    <h4>${category}</h4>
+                    <p>Score: <strong>${score}/10</strong></p>
+                    <p>${getCategoryRecommendation(category, score)}</p>
+                `;
+                resultsGrid.appendChild(resultItem);
+            });
+        }
+
+        function getScoreClass(score) {
+            if (score >= 7) return 'score-high';
+            if (score >= 4) return 'score-medium';
+            return 'score-low';
+        }
+
+        function getOverallRecommendation(averageScore) {
+            if (averageScore >= 7) {
+                return "High priority areas identified. Consider immediate action on data strategy and governance."
+            } else if (averageScore >= 4) {
+                return "Moderate challenges detected. Focus on targeted improvements in key areas."
+            } else {
+                return "Good foundation. Continue building on your data management strengths."
+            }
+        }
+
+        function getCategoryRecommendation(category, score) {
+            if (score >= 7) {
+                return "High priority - Immediate attention required. Consider consulting with data management experts."
+            } else if (score >= 4) {
+                return "Moderate priority - Plan improvements and allocate resources accordingly."
+            } else {
+                return "Low priority - Maintain current practices and monitor for changes."
+            }
+        }
+
+        // Initialize with default values
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set all sliders to default value and update displays
+            document.querySelectorAll('input[type="range"]').forEach(input => {
+                const valueDisplay = document.getElementById(input.id + '-value');
+                valueDisplay.textContent = input.value;
+            });
+        });
+    </script>
+</body>
+</html>
