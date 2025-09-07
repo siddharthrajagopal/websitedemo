@@ -330,6 +330,19 @@
             color: #444;
             margin-bottom: 20px;
         }
+
+        /* Pre-order spacing tweaks */
+        .pre-order-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* equal gap between text and logos */
+            margin-top: 2px; /* pull section closer to book image */
+        }
+
+        .pre-order-text {
+            margin: 0; /* remove default p margins */
+        }
     </style>
 </head>
 <body>
@@ -403,6 +416,7 @@
                         <img src="assets/book-cover.png" alt="Data as the Fourth Pillar - Book Cover" class="book-image">
                     </div>
                     <div class="pre-order-section">
+                        <p class="pre-order-text">Buy now from your favorite retailer</p>
                         <div class="retailer-links">
                             <a href="https://a.co/d/7ZjIb8J" class="retailer-link" target="_blank" rel="noopener noreferrer">
                                 <img src="assets/amazon-logo.png" alt="Amazon">
@@ -420,7 +434,6 @@
                                 <img src="assets/standards-media-logo.png" alt="Standards Media">
                             </a>
                         </div>
-                        <p class="pre-order-text">Buy now from your favorite retailer</p>
                     </div>
                 </div>
                 <div class="hero-text">
