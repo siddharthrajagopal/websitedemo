@@ -1597,41 +1597,72 @@
         const podcastNextBtn = document.querySelector('.podcast-next-btn');
         
         if (podcastTrack && podcastPrevBtn && podcastNextBtn) {
+            // Count unique video-item elements (check by looking at all children that are video-items)
+            // First, clean up any potential duplicates by keeping only unique items
+            const videoItems = podcastTrack.querySelectorAll('.video-item');
+            const originalPodcastCount = videoItems.length;
+            
+            // If only one item exists (or should exist), clean up and disable carousel
+            if (originalPodcastCount === 1) {
+                // Remove all but the first video-item
+                const firstItem = podcastTrack.querySelector('.video-item');
+                if (firstItem) {
+                    // Clear the track and add only the first item
+                    podcastTrack.innerHTML = '';
+                    podcastTrack.appendChild(firstItem);
+                    // Reset transform
+                    podcastTrack.style.transform = 'translateX(0)';
+                    podcastTrack.style.transition = 'none';
+                }
+                // Hide navigation buttons
+                podcastPrevBtn.style.display = 'none';
+                podcastNextBtn.style.display = 'none';
+                return; // Exit early, no carousel needed
+            }
+            
             let podcastItems = Array.from(podcastTrack.children);
 
             function getPodcastItemWidth() {
+                if (podcastItems.length === 0) return 0;
                 return podcastItems[0].offsetWidth + parseInt(getComputedStyle(podcastItems[0]).marginRight || 0);
             }
             function getVisiblePodcastCount() {
-                return Math.floor(document.querySelector('.podcast-carousel').offsetWidth / getPodcastItemWidth());
+                const width = getPodcastItemWidth();
+                if (width === 0) return 1;
+                return Math.floor(document.querySelector('.podcast-carousel').offsetWidth / width);
             }
 
             let podcastItemWidth, visiblePodcastCount, totalPodcastItems, currentPodcastIndex;
 
             function setupPodcastCarousel() {
-                // Remove all clones
-                while (podcastTrack.children.length > podcastItems.length) {
-                    podcastTrack.removeChild(podcastTrack.firstChild);
+                // Remove all clones - keep only original items
+                while (podcastTrack.children.length > originalPodcastCount) {
+                    if (podcastTrack.lastChild) podcastTrack.removeChild(podcastTrack.lastChild);
+                    else break;
                 }
-                while (podcastTrack.children.length > podcastItems.length) {
-                    podcastTrack.removeChild(podcastTrack.lastChild);
+                while (podcastTrack.children.length > originalPodcastCount) {
+                    if (podcastTrack.firstChild) podcastTrack.removeChild(podcastTrack.firstChild);
+                    else break;
                 }
-                // Recalculate
+                
+                // Get original items only
                 podcastItems = Array.from(podcastTrack.children);
                 if (podcastItems.length === 0) return;
+                
                 podcastItemWidth = getPodcastItemWidth();
                 visiblePodcastCount = getVisiblePodcastCount();
 
-                // Only clone if we have more items than visible
-                if (podcastItems.length > visiblePodcastCount) {
+                // Only clone if we have more than one item AND more items than visible
+                if (originalPodcastCount > 1 && originalPodcastCount > visiblePodcastCount) {
                     // Clone slides for infinite effect
                     for (let i = 0; i < visiblePodcastCount; i++) {
                         podcastTrack.appendChild(podcastItems[i].cloneNode(true)); // append clones to end
                         podcastTrack.insertBefore(podcastItems[podcastItems.length - 1 - i].cloneNode(true), podcastTrack.firstChild); // prepend clones to start
                     }
                 }
+                
                 totalPodcastItems = podcastTrack.children.length;
-                currentPodcastIndex = visiblePodcastCount > 0 ? visiblePodcastCount : 0; // Start at the first real card
+                currentPodcastIndex = (visiblePodcastCount > 0 ? visiblePodcastCount : 0);
                 updatePodcastCarousel(false);
             }
 
@@ -1642,7 +1673,7 @@
                 if (!animate) setTimeout(() => podcastTrack.style.transition = '', 20);
             }
 
-            // Podcast Navigation
+            // Podcast Navigation (only set up if we have more than one item)
             podcastNextBtn.addEventListener('click', () => {
                 if (totalPodcastItems <= visiblePodcastCount) return; // Don't navigate if all items are visible
                 currentPodcastIndex++;
@@ -1669,7 +1700,7 @@
             // Podcast Auto-scroll (only if more than one item)
             let podcastScrollInterval;
             function startPodcastAutoScroll() {
-                if (totalPodcastItems <= visiblePodcastCount) return; // Don't auto-scroll if all items are visible
+                if (totalPodcastItems <= visiblePodcastCount || originalPodcastCount <= 1) return; // Don't auto-scroll if all items are visible or only one item
                 podcastScrollInterval = setInterval(() => {
                     podcastNextBtn.click();
                 }, 6000);
@@ -1682,10 +1713,14 @@
 
             // Responsive: rebuild podcast carousel on resize
             window.addEventListener('resize', () => {
-                setupPodcastCarousel();
+                if (originalPodcastCount > 1) {
+                    setupPodcastCarousel();
+                }
             });
-            setupPodcastCarousel();
-            startPodcastAutoScroll();
+            if (originalPodcastCount > 1) {
+                setupPodcastCarousel();
+                startPodcastAutoScroll();
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
