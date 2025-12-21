@@ -373,6 +373,11 @@
             justify-content: center;
         }
 
+        /* Podcast section styles */
+        #podcast-image-link img:hover {
+            transform: translateY(-5px);
+        }
+
         /* Chat modal styles */
         .chat-modal-overlay {
             display: none;
@@ -522,9 +527,9 @@
                     <i class="fas fa-book"></i>
                     <span>About the Book</span>
                 </a>
-                <a href="#personas" class="nav-link">
-                    <i class="fas fa-users"></i>
-                    <span>Key Personas</span>
+                <a href="#podcast" class="nav-link">
+                    <i class="fas fa-podcast"></i>
+                    <span>Podcast</span>
                 </a>
                 <a href="#themes" class="nav-link">
                     <i class="fas fa-layer-group"></i>
@@ -549,9 +554,9 @@
             <i class="fas fa-book"></i>
             <span>About the Book</span>
         </a>
-        <a href="#personas">
-            <i class="fas fa-users"></i>
-            <span>Key Personas</span>
+        <a href="#podcast">
+            <i class="fas fa-podcast"></i>
+            <span>Podcast</span>
         </a>
         <a href="#themes">
             <i class="fas fa-layer-group"></i>
@@ -942,6 +947,32 @@
             <div class="slider-nav">
                 <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
                 <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast Section -->
+    <section id="podcast" class="podcast">
+        <div class="container">
+            <h2 style="font-size:2.5rem;margin-bottom:40px;text-align:center;color:#2c3e50;">Data as the Fourth Pillar - The Board and CXO Podcast</h2>
+            <div style="text-align:center;margin-bottom:50px;">
+                <a href="#" target="_blank" rel="noopener noreferrer" id="podcast-image-link">
+                    <img src="assets/podcast-image.png" alt="Data as the Fourth Pillar - The Board and CXO Podcast" style="max-width:500px;width:100%;height:auto;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:transform 0.3s ease;display:block;margin:0 auto;">
+                </a>
+            </div>
+            <div class="video-carousel podcast-carousel">
+                <div class="video-track podcast-video-track">
+                    <div class="video-item" style="flex: 0 0 auto; width: 380px;">
+                        <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
+                            <iframe id="podcast-trailer-youtube" src="https://www.youtube.com/embed/nJrCvT-WPXg" title="Podcast Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                        </div>
+                        <p class="video-description">Trailer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="video-slider-nav podcast-slider-nav">
+                <button class="video-prev-btn podcast-prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="video-next-btn podcast-next-btn"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
@@ -1559,6 +1590,103 @@
         });
         setupEventsCarousel();
         startEventsAutoScroll();
+
+        // --- Podcast Carousel Setup ---
+        const podcastTrack = document.querySelector('.podcast-video-track');
+        const podcastPrevBtn = document.querySelector('.podcast-prev-btn');
+        const podcastNextBtn = document.querySelector('.podcast-next-btn');
+        
+        if (podcastTrack && podcastPrevBtn && podcastNextBtn) {
+            let podcastItems = Array.from(podcastTrack.children);
+
+            function getPodcastItemWidth() {
+                return podcastItems[0].offsetWidth + parseInt(getComputedStyle(podcastItems[0]).marginRight || 0);
+            }
+            function getVisiblePodcastCount() {
+                return Math.floor(document.querySelector('.podcast-carousel').offsetWidth / getPodcastItemWidth());
+            }
+
+            let podcastItemWidth, visiblePodcastCount, totalPodcastItems, currentPodcastIndex;
+
+            function setupPodcastCarousel() {
+                // Remove all clones
+                while (podcastTrack.children.length > podcastItems.length) {
+                    podcastTrack.removeChild(podcastTrack.firstChild);
+                }
+                while (podcastTrack.children.length > podcastItems.length) {
+                    podcastTrack.removeChild(podcastTrack.lastChild);
+                }
+                // Recalculate
+                podcastItems = Array.from(podcastTrack.children);
+                if (podcastItems.length === 0) return;
+                podcastItemWidth = getPodcastItemWidth();
+                visiblePodcastCount = getVisiblePodcastCount();
+
+                // Only clone if we have more items than visible
+                if (podcastItems.length > visiblePodcastCount) {
+                    // Clone slides for infinite effect
+                    for (let i = 0; i < visiblePodcastCount; i++) {
+                        podcastTrack.appendChild(podcastItems[i].cloneNode(true)); // append clones to end
+                        podcastTrack.insertBefore(podcastItems[podcastItems.length - 1 - i].cloneNode(true), podcastTrack.firstChild); // prepend clones to start
+                    }
+                }
+                totalPodcastItems = podcastTrack.children.length;
+                currentPodcastIndex = visiblePodcastCount > 0 ? visiblePodcastCount : 0; // Start at the first real card
+                updatePodcastCarousel(false);
+            }
+
+            function updatePodcastCarousel(animate = true) {
+                if (!animate) podcastTrack.style.transition = 'none';
+                else podcastTrack.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+                podcastTrack.style.transform = `translateX(${-currentPodcastIndex * podcastItemWidth}px)`;
+                if (!animate) setTimeout(() => podcastTrack.style.transition = '', 20);
+            }
+
+            // Podcast Navigation
+            podcastNextBtn.addEventListener('click', () => {
+                if (totalPodcastItems <= visiblePodcastCount) return; // Don't navigate if all items are visible
+                currentPodcastIndex++;
+                updatePodcastCarousel();
+                if (currentPodcastIndex === totalPodcastItems - visiblePodcastCount) {
+                    setTimeout(() => {
+                        currentPodcastIndex = visiblePodcastCount;
+                        updatePodcastCarousel(false);
+                    }, 500);
+                }
+            });
+            podcastPrevBtn.addEventListener('click', () => {
+                if (totalPodcastItems <= visiblePodcastCount) return; // Don't navigate if all items are visible
+                currentPodcastIndex--;
+                updatePodcastCarousel();
+                if (currentPodcastIndex === 0) {
+                    setTimeout(() => {
+                        currentPodcastIndex = totalPodcastItems - 2 * visiblePodcastCount;
+                        updatePodcastCarousel(false);
+                    }, 500);
+                }
+            });
+
+            // Podcast Auto-scroll (only if more than one item)
+            let podcastScrollInterval;
+            function startPodcastAutoScroll() {
+                if (totalPodcastItems <= visiblePodcastCount) return; // Don't auto-scroll if all items are visible
+                podcastScrollInterval = setInterval(() => {
+                    podcastNextBtn.click();
+                }, 6000);
+            }
+            function stopPodcastAutoScroll() {
+                clearInterval(podcastScrollInterval);
+            }
+            podcastTrack.addEventListener('mouseenter', stopPodcastAutoScroll);
+            podcastTrack.addEventListener('mouseleave', startPodcastAutoScroll);
+
+            // Responsive: rebuild podcast carousel on resize
+            window.addEventListener('resize', () => {
+                setupPodcastCarousel();
+            });
+            setupPodcastCarousel();
+            startPodcastAutoScroll();
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             // YouTube analytics tracking (basic: track iframe load as a view)
