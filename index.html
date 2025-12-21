@@ -158,6 +158,8 @@
                 border: none;
                 cursor: pointer;
                 padding: 0;
+                z-index: 1001;
+                position: relative;
             }
 
             .mobile-menu-btn span {
@@ -177,7 +179,9 @@
                 background: white;
                 padding: 10px 0;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                z-index: 999;
+                z-index: 10001;
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
             }
 
             .mobile-menu.active {
@@ -507,6 +511,31 @@
             .chat-button {
                 width: 100%;
                 justify-content: center;
+                pointer-events: auto;
+                cursor: pointer;
+            }
+
+            /* Podcast section mobile styles */
+            .podcast .video-item {
+                width: 90vw !important;
+                max-width: 400px !important;
+                flex: 0 0 90vw !important;
+                margin: 0 auto;
+            }
+
+            .podcast .podcast-video-track {
+                transform: translateX(0) !important;
+                justify-content: center;
+            }
+
+            .podcast .video-carousel {
+                overflow: visible;
+                padding: 0 5vw;
+            }
+
+            .podcast h2 {
+                font-size: 1.8rem !important;
+                padding: 0 20px;
             }
         }
     </style>
@@ -1209,12 +1238,17 @@
             const body = document.body;
 
             // Toggle menu
-            mobileMenuBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const mobileMenu = document.querySelector('.mobile-menu');
-                mobileMenu.classList.toggle('active');
-                console.log('Menu clicked, active:', mobileMenu.classList.contains('active')); // Debug log
-            });
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    if (mobileMenu) {
+                        mobileMenu.classList.toggle('active');
+                        console.log('Menu clicked, active:', mobileMenu.classList.contains('active')); // Debug log
+                    }
+                });
+            }
 
             // Close menu when clicking a link
             document.querySelectorAll('.mobile-menu a').forEach(link => {
@@ -1226,9 +1260,12 @@
 
             // Close menu when clicking outside
             document.addEventListener('click', function(e) {
-                if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
-                    const mobileMenu = document.querySelector('.mobile-menu');
-                    mobileMenu.classList.remove('active');
+                const mobileMenu = document.querySelector('.mobile-menu');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    // Don't close if clicking on menu button or inside the menu itself
+                    if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                        mobileMenu.classList.remove('active');
+                    }
                 }
             });
         });
@@ -1751,11 +1788,14 @@
         let isMinimized = false;
 
         // Open chat modal
-        chatButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            chatModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        });
+        if (chatButton && chatModal) {
+            chatButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                chatModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+        }
 
         // Close chat modal
         function closeChatModal() {
@@ -1763,36 +1803,42 @@
             document.body.style.overflow = ''; // Restore scrolling
         }
 
-        closeChatBtn.addEventListener('click', closeChatModal);
+        if (closeChatBtn) {
+            closeChatBtn.addEventListener('click', closeChatModal);
+        }
 
         // Close modal when clicking overlay (but not the container)
-        chatModal.addEventListener('click', function(e) {
-            if (e.target === chatModal) {
-                closeChatModal();
-            }
-        });
+        if (chatModal) {
+            chatModal.addEventListener('click', function(e) {
+                if (e.target === chatModal) {
+                    closeChatModal();
+                }
+            });
+        }
 
         // Toggle minimize/expand
-        toggleSizeBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            isMinimized = !isMinimized;
-            
-            if (isMinimized) {
-                chatModalContainer.classList.add('minimized');
-                expandIcon.classList.remove('fa-expand');
-                expandIcon.classList.add('fa-compress');
-                toggleSizeBtn.setAttribute('aria-label', 'Expand chat');
-            } else {
-                chatModalContainer.classList.remove('minimized');
-                expandIcon.classList.remove('fa-compress');
-                expandIcon.classList.add('fa-expand');
-                toggleSizeBtn.setAttribute('aria-label', 'Minimize chat');
-            }
-        });
+        if (toggleSizeBtn) {
+            toggleSizeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                isMinimized = !isMinimized;
+                
+                if (isMinimized) {
+                    chatModalContainer.classList.add('minimized');
+                    expandIcon.classList.remove('fa-expand');
+                    expandIcon.classList.add('fa-compress');
+                    toggleSizeBtn.setAttribute('aria-label', 'Expand chat');
+                } else {
+                    chatModalContainer.classList.remove('minimized');
+                    expandIcon.classList.remove('fa-compress');
+                    expandIcon.classList.add('fa-expand');
+                    toggleSizeBtn.setAttribute('aria-label', 'Minimize chat');
+                }
+            });
+        }
 
         // Close modal on Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && chatModal.classList.contains('active')) {
+            if (chatModal && e.key === 'Escape' && chatModal.classList.contains('active')) {
                 closeChatModal();
             }
         });
