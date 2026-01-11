@@ -158,8 +158,6 @@
                 border: none;
                 cursor: pointer;
                 padding: 0;
-                z-index: 1001;
-                position: relative;
             }
 
             .mobile-menu-btn span {
@@ -179,9 +177,7 @@
                 background: white;
                 padding: 10px 0;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                z-index: 10001;
-                max-height: calc(100vh - 60px);
-                overflow-y: auto;
+                z-index: 999;
             }
 
             .mobile-menu.active {
@@ -347,197 +343,6 @@
         .pre-order-text {
             margin: 0; /* remove default p margins */
         }
-
-        /* Chat button styles */
-        .chat-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: inherit;
-        }
-
-        .chat-button i {
-            font-size: 0.9rem;
-        }
-
-        /* Hero section button styling - more compact and elegant */
-        .hero .cta-group .cta-button {
-            padding: 12px 24px;
-            font-size: 0.95rem;
-            border-radius: 25px;
-            white-space: nowrap;
-        }
-
-        .hero .cta-group {
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        /* Podcast section styles */
-        #podcast-image-link img:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Chat modal styles */
-        .chat-modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .chat-modal-overlay.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 1;
-        }
-
-        .chat-modal-container {
-            position: relative;
-            width: 90%;
-            max-width: 1200px;
-            height: 90vh;
-            max-height: 800px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        .chat-modal-overlay.active .chat-modal-container {
-            transform: scale(1);
-        }
-
-        .chat-modal-container.minimized {
-            width: 400px;
-            height: 500px;
-            max-height: 500px;
-        }
-
-        .chat-modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: #2c3e50;
-            color: white;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .chat-modal-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chat-modal-title i {
-            font-size: 1.2rem;
-        }
-
-        .chat-modal-controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-modal-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s ease;
-            font-size: 1rem;
-        }
-
-        .chat-modal-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .chat-modal-body {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chat-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        /* Mobile responsive */
-        @media screen and (max-width: 768px) {
-            .chat-modal-container {
-                width: 100%;
-                height: 100vh;
-                max-height: 100vh;
-                border-radius: 0;
-            }
-
-            .chat-modal-container.minimized {
-                width: 100%;
-                height: 60vh;
-                max-height: 60vh;
-            }
-
-            .cta-group {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .chat-button {
-                width: 100%;
-                justify-content: center;
-                pointer-events: auto;
-                cursor: pointer;
-            }
-
-            /* Podcast section mobile styles */
-            .podcast .video-item {
-                width: 90vw !important;
-                max-width: 400px !important;
-                flex: 0 0 90vw !important;
-                margin: 0 auto;
-            }
-
-            .podcast .podcast-video-track {
-                transform: translateX(0) !important;
-                justify-content: center;
-            }
-
-            .podcast .video-carousel {
-                overflow: visible;
-                padding: 0 5vw;
-            }
-
-            .podcast h2 {
-                font-size: 1.8rem !important;
-                padding: 0 20px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -556,9 +361,9 @@
                     <i class="fas fa-book"></i>
                     <span>About the Book</span>
                 </a>
-                <a href="#podcast" class="nav-link">
-                    <i class="fas fa-podcast"></i>
-                    <span>Podcast</span>
+                <a href="#personas" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Key Personas</span>
                 </a>
                 <a href="#themes" class="nav-link">
                     <i class="fas fa-layer-group"></i>
@@ -583,9 +388,9 @@
             <i class="fas fa-book"></i>
             <span>About the Book</span>
         </a>
-        <a href="#podcast">
-            <i class="fas fa-podcast"></i>
-            <span>Podcast</span>
+        <a href="#personas">
+            <i class="fas fa-users"></i>
+            <span>Key Personas</span>
         </a>
         <a href="#themes">
             <i class="fas fa-layer-group"></i>
@@ -639,10 +444,6 @@
                     <p class="subtitle">An Executive Guide for Scaling AI</p>
                     <div class="cta-group">
                         <a href="#recommendations" class="cta-button">Recommendations</a>
-                        <button id="chatButton" class="cta-button chat-button">
-                            <i class="fas fa-comments"></i>
-                            <span>Chat</span>
-                        </button>
                         <a href="#contact" class="cta-button secondary">Sign-up for Discount Code</a>
                     </div>
                 </div>
@@ -980,32 +781,6 @@
         </div>
     </section>
 
-    <!-- Podcast Section -->
-    <section id="podcast" class="podcast">
-        <div class="container">
-            <h2 style="font-size:2.5rem;margin-bottom:40px;text-align:center;color:#2c3e50;">Data as the Fourth Pillar - The Board and CXO Podcast</h2>
-            <div style="text-align:center;margin-bottom:50px;">
-                <a href="#" target="_blank" rel="noopener noreferrer" id="podcast-image-link">
-                    <img src="assets/podcast-image.png" alt="Data as the Fourth Pillar - The Board and CXO Podcast" style="max-width:500px;width:100%;height:auto;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:transform 0.3s ease;display:block;margin:0 auto;">
-                </a>
-            </div>
-            <div class="video-carousel podcast-carousel">
-                <div class="video-track podcast-video-track">
-                    <div class="video-item" style="flex: 0 0 auto; width: 380px;">
-                        <div class="youtube-video-wrapper" style="position:relative;width:100%;max-width:380px;padding-bottom:56.25%;height:0;">
-                            <iframe id="podcast-trailer-youtube" src="https://www.youtube.com/embed/nJrCvT-WPXg" title="Podcast Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
-                        </div>
-                        <p class="video-description">Trailer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="video-slider-nav podcast-slider-nav">
-                <button class="video-prev-btn podcast-prev-btn"><i class="fas fa-chevron-left"></i></button>
-                <button class="video-next-btn podcast-next-btn"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </section>
-
     <!-- Video Interviews Section -->
     <section id="video-interviews" class="video-interviews">
         <div class="container">
@@ -1081,21 +856,21 @@
                     </div>
                     <!-- Big Data London Event Tile -->
                     <div class="recommendation-card event-card" style="min-width:300px;max-width:400px;padding:30px;box-shadow:0 4px 15px rgba(0,0,0,0.1);margin:10px;display:flex;flex-direction:column;align-items:center;">
-                        <a href="https://www.bigdataldn.com/en-gb/conference/session-details.4500.246745.data-as-the-fourth-pillar-_-an-executive-guide-for-scaling-ai.html" target="_blank" rel="noopener noreferrer" class="event-logo-link" style="pointer-events: none;">
-                            <img src="assets/recommenders/big-data-london-logo.png" alt="Big Data London Logo" style="width:260px; height:160px; object-fit:cover; object-position:center; display:block; margin:0 auto 18px; border-radius:16px; background:#fff; filter: grayscale(100%); opacity: 0.6;" />
+                        <a href="https://www.bigdataldn.com/en-gb/conference/session-details.4500.246745.data-as-the-fourth-pillar-_-an-executive-guide-for-scaling-ai.html" target="_blank" rel="noopener noreferrer" class="event-logo-link">
+                            <img src="assets/recommenders/big-data-london-logo.png" alt="Big Data London Logo" style="width:260px; height:160px; object-fit:cover; object-position:center; display:block; margin:0 auto 18px; border-radius:16px; background:#fff;" />
                         </a>
                         <h3 style="text-align:center;font-size:1.2rem;line-height:1.4;">Big Data London (VIP Theatre):<br>Data as the Fourth Pillar</h3>
                         <p style="text-align:center;font-size:1rem;"><strong>Date:</strong> 24 September 2025, 10:40–11:10</p>
-                        <a href="https://www.bigdataldn.com/en-gb/conference/session-details.4500.246745.data-as-the-fourth-pillar-_-an-executive-guide-for-scaling-ai.html" target="_blank" rel="noopener noreferrer" class="cta-button" aria-disabled="true" tabindex="-1" style="display:inline-block;margin-top:12px;padding:12px 24px;font-size:1rem;background-color:#bdc3c7;color:#ffffff;cursor:not-allowed;pointer-events:none;">Sign Up</a>
+                        <a href="https://www.bigdataldn.com/en-gb/conference/session-details.4500.246745.data-as-the-fourth-pillar-_-an-executive-guide-for-scaling-ai.html" target="_blank" rel="noopener noreferrer" class="cta-button" style="display:inline-block;margin-top:12px;padding:12px 24px;font-size:1rem;">Sign Up</a>
                     </div>
                     <!-- Data 2030 Summit Event Tile -->
                     <div class="recommendation-card event-card" style="min-width:300px;max-width:400px;padding:30px;box-shadow:0 4px 15px rgba(0,0,0,0.1);margin:10px;display:flex;flex-direction:column;align-items:center;">
-                        <a href="https://data2030summit.com/" target="_blank" rel="noopener noreferrer" class="event-logo-link" style="pointer-events: none;">
-                            <img src="assets/recommenders/data-2030-summit-logo.png" alt="Data 2030 Summit Logo" style="width:260px; height:160px; object-fit:cover; object-position:center; display:block; margin:0 auto 18px; border-radius:16px; background:#fff; filter: grayscale(100%); opacity: 0.6;" />
+                        <a href="https://data2030summit.com/" target="_blank" rel="noopener noreferrer" class="event-logo-link">
+                            <img src="assets/recommenders/data-2030-summit-logo.png" alt="Data 2030 Summit Logo" style="width:260px; height:160px; object-fit:cover; object-position:center; display:block; margin:0 auto 18px; border-radius:16px; background:#fff;" />
                         </a>
                         <h3 style="text-align:center;font-size:1.2rem;line-height:1.4;">Data 2030 Summit (Stockholm/Hybrid):<br>Data as the Fourth Pillar</h3>
                         <p style="text-align:center;font-size:1rem;"><strong>Date:</strong> 21 October 2025, 17:15–17:35</p>
-                        <a href="https://www.youtube.com/watch?v=-iduSLi0fbI" target="_blank" rel="noopener noreferrer" class="cta-button" style="display:inline-block;margin-top:12px;padding:12px 24px;font-size:1rem;">Presentation</a>
+                        <a href="https://data2030summit.com/" target="_blank" rel="noopener noreferrer" class="cta-button" style="display:inline-block;margin-top:12px;padding:12px 24px;font-size:1rem;">Sign Up</a>
                     </div>
                 </div>
             </div>
@@ -1199,36 +974,6 @@
         </div>
     </footer>
 
-    <!-- Chat Modal -->
-    <div id="chatModal" class="chat-modal-overlay">
-        <div class="chat-modal-container" id="chatModalContainer">
-            <div class="chat-modal-header">
-                <div class="chat-modal-title">
-                    <i class="fas fa-comments"></i>
-                    <span>Book Chat Assistant</span>
-                </div>
-                <div class="chat-modal-controls">
-                    <button class="chat-modal-btn" id="toggleSizeBtn" aria-label="Toggle size">
-                        <i class="fas fa-expand" id="expandIcon"></i>
-                    </button>
-                    <button class="chat-modal-btn" id="closeChatBtn" aria-label="Close chat">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="chat-modal-body">
-                <iframe 
-                    id="chatIframe"
-                    class="chat-iframe"
-                    src="https://sid19840-book-chat-app.hf.space"
-                    title="Book Chat Assistant"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </div>
-
     <!-- JavaScript for animations -->
     <script>
         // Mobile menu functionality
@@ -1238,17 +983,12 @@
             const body = document.body;
 
             // Toggle menu
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const mobileMenu = document.querySelector('.mobile-menu');
-                    if (mobileMenu) {
-                        mobileMenu.classList.toggle('active');
-                        console.log('Menu clicked, active:', mobileMenu.classList.contains('active')); // Debug log
-                    }
-                });
-            }
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const mobileMenu = document.querySelector('.mobile-menu');
+                mobileMenu.classList.toggle('active');
+                console.log('Menu clicked, active:', mobileMenu.classList.contains('active')); // Debug log
+            });
 
             // Close menu when clicking a link
             document.querySelectorAll('.mobile-menu a').forEach(link => {
@@ -1260,12 +1000,9 @@
 
             // Close menu when clicking outside
             document.addEventListener('click', function(e) {
-                const mobileMenu = document.querySelector('.mobile-menu');
-                if (mobileMenu && mobileMenu.classList.contains('active')) {
-                    // Don't close if clicking on menu button or inside the menu itself
-                    if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-                        mobileMenu.classList.remove('active');
-                    }
+                if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    mobileMenu.classList.remove('active');
                 }
             });
         });
@@ -1628,138 +1365,6 @@
         setupEventsCarousel();
         startEventsAutoScroll();
 
-        // --- Podcast Carousel Setup ---
-        const podcastTrack = document.querySelector('.podcast-video-track');
-        const podcastPrevBtn = document.querySelector('.podcast-prev-btn');
-        const podcastNextBtn = document.querySelector('.podcast-next-btn');
-        
-        if (podcastTrack && podcastPrevBtn && podcastNextBtn) {
-            // Count unique video-item elements (check by looking at all children that are video-items)
-            // First, clean up any potential duplicates by keeping only unique items
-            const videoItems = podcastTrack.querySelectorAll('.video-item');
-            const originalPodcastCount = videoItems.length;
-            
-            // If only one item exists (or should exist), clean up and disable carousel
-            if (originalPodcastCount === 1) {
-                // Remove all but the first video-item
-                const firstItem = podcastTrack.querySelector('.video-item');
-                if (firstItem) {
-                    // Clear the track and add only the first item
-                    podcastTrack.innerHTML = '';
-                    podcastTrack.appendChild(firstItem);
-                    // Reset transform
-                    podcastTrack.style.transform = 'translateX(0)';
-                    podcastTrack.style.transition = 'none';
-                }
-                // Hide navigation buttons
-                podcastPrevBtn.style.display = 'none';
-                podcastNextBtn.style.display = 'none';
-                return; // Exit early, no carousel needed
-            }
-            
-            let podcastItems = Array.from(podcastTrack.children);
-
-            function getPodcastItemWidth() {
-                if (podcastItems.length === 0) return 0;
-                return podcastItems[0].offsetWidth + parseInt(getComputedStyle(podcastItems[0]).marginRight || 0);
-            }
-            function getVisiblePodcastCount() {
-                const width = getPodcastItemWidth();
-                if (width === 0) return 1;
-                return Math.floor(document.querySelector('.podcast-carousel').offsetWidth / width);
-            }
-
-            let podcastItemWidth, visiblePodcastCount, totalPodcastItems, currentPodcastIndex;
-
-            function setupPodcastCarousel() {
-                // Remove all clones - keep only original items
-                while (podcastTrack.children.length > originalPodcastCount) {
-                    if (podcastTrack.lastChild) podcastTrack.removeChild(podcastTrack.lastChild);
-                    else break;
-                }
-                while (podcastTrack.children.length > originalPodcastCount) {
-                    if (podcastTrack.firstChild) podcastTrack.removeChild(podcastTrack.firstChild);
-                    else break;
-                }
-                
-                // Get original items only
-                podcastItems = Array.from(podcastTrack.children);
-                if (podcastItems.length === 0) return;
-                
-                podcastItemWidth = getPodcastItemWidth();
-                visiblePodcastCount = getVisiblePodcastCount();
-
-                // Only clone if we have more than one item AND more items than visible
-                if (originalPodcastCount > 1 && originalPodcastCount > visiblePodcastCount) {
-                    // Clone slides for infinite effect
-                    for (let i = 0; i < visiblePodcastCount; i++) {
-                        podcastTrack.appendChild(podcastItems[i].cloneNode(true)); // append clones to end
-                        podcastTrack.insertBefore(podcastItems[podcastItems.length - 1 - i].cloneNode(true), podcastTrack.firstChild); // prepend clones to start
-                    }
-                }
-                
-                totalPodcastItems = podcastTrack.children.length;
-                currentPodcastIndex = (visiblePodcastCount > 0 ? visiblePodcastCount : 0);
-                updatePodcastCarousel(false);
-            }
-
-            function updatePodcastCarousel(animate = true) {
-                if (!animate) podcastTrack.style.transition = 'none';
-                else podcastTrack.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
-                podcastTrack.style.transform = `translateX(${-currentPodcastIndex * podcastItemWidth}px)`;
-                if (!animate) setTimeout(() => podcastTrack.style.transition = '', 20);
-            }
-
-            // Podcast Navigation (only set up if we have more than one item)
-            podcastNextBtn.addEventListener('click', () => {
-                if (totalPodcastItems <= visiblePodcastCount) return; // Don't navigate if all items are visible
-                currentPodcastIndex++;
-                updatePodcastCarousel();
-                if (currentPodcastIndex === totalPodcastItems - visiblePodcastCount) {
-                    setTimeout(() => {
-                        currentPodcastIndex = visiblePodcastCount;
-                        updatePodcastCarousel(false);
-                    }, 500);
-                }
-            });
-            podcastPrevBtn.addEventListener('click', () => {
-                if (totalPodcastItems <= visiblePodcastCount) return; // Don't navigate if all items are visible
-                currentPodcastIndex--;
-                updatePodcastCarousel();
-                if (currentPodcastIndex === 0) {
-                    setTimeout(() => {
-                        currentPodcastIndex = totalPodcastItems - 2 * visiblePodcastCount;
-                        updatePodcastCarousel(false);
-                    }, 500);
-                }
-            });
-
-            // Podcast Auto-scroll (only if more than one item)
-            let podcastScrollInterval;
-            function startPodcastAutoScroll() {
-                if (totalPodcastItems <= visiblePodcastCount || originalPodcastCount <= 1) return; // Don't auto-scroll if all items are visible or only one item
-                podcastScrollInterval = setInterval(() => {
-                    podcastNextBtn.click();
-                }, 6000);
-            }
-            function stopPodcastAutoScroll() {
-                clearInterval(podcastScrollInterval);
-            }
-            podcastTrack.addEventListener('mouseenter', stopPodcastAutoScroll);
-            podcastTrack.addEventListener('mouseleave', startPodcastAutoScroll);
-
-            // Responsive: rebuild podcast carousel on resize
-            window.addEventListener('resize', () => {
-                if (originalPodcastCount > 1) {
-                    setupPodcastCarousel();
-                }
-            });
-            if (originalPodcastCount > 1) {
-                setupPodcastCarousel();
-                startPodcastAutoScroll();
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
             // YouTube analytics tracking (basic: track iframe load as a view)
             const ytIframe = document.getElementById('randy-bean-youtube');
@@ -1776,71 +1381,6 @@
             }
             // For advanced YouTube analytics (play, pause, watch time), YouTube IFrame API is needed
             // If you want this, let me know and I can implement it
-        });
-
-        // Chat Modal Functionality
-        const chatButton = document.getElementById('chatButton');
-        const chatModal = document.getElementById('chatModal');
-        const chatModalContainer = document.getElementById('chatModalContainer');
-        const closeChatBtn = document.getElementById('closeChatBtn');
-        const toggleSizeBtn = document.getElementById('toggleSizeBtn');
-        const expandIcon = document.getElementById('expandIcon');
-        let isMinimized = false;
-
-        // Open chat modal
-        if (chatButton && chatModal) {
-            chatButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                chatModal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            });
-        }
-
-        // Close chat modal
-        function closeChatModal() {
-            chatModal.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
-        }
-
-        if (closeChatBtn) {
-            closeChatBtn.addEventListener('click', closeChatModal);
-        }
-
-        // Close modal when clicking overlay (but not the container)
-        if (chatModal) {
-            chatModal.addEventListener('click', function(e) {
-                if (e.target === chatModal) {
-                    closeChatModal();
-                }
-            });
-        }
-
-        // Toggle minimize/expand
-        if (toggleSizeBtn) {
-            toggleSizeBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                isMinimized = !isMinimized;
-                
-                if (isMinimized) {
-                    chatModalContainer.classList.add('minimized');
-                    expandIcon.classList.remove('fa-expand');
-                    expandIcon.classList.add('fa-compress');
-                    toggleSizeBtn.setAttribute('aria-label', 'Expand chat');
-                } else {
-                    chatModalContainer.classList.remove('minimized');
-                    expandIcon.classList.remove('fa-compress');
-                    expandIcon.classList.add('fa-expand');
-                    toggleSizeBtn.setAttribute('aria-label', 'Minimize chat');
-                }
-            });
-        }
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (chatModal && e.key === 'Escape' && chatModal.classList.contains('active')) {
-                closeChatModal();
-            }
         });
     </script>
     <script src="assets/js/analytics.js"></script>
