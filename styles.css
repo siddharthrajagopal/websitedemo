@@ -1515,13 +1515,13 @@ html {
     }
 }
 
-/* Video Interviews Section */
-.video-interviews {
+/* Podcast Section */
+.podcast {
     background: #fff;
     padding: 60px 0 40px 0;
 }
 
-.video-interviews h2 {
+.podcast h2 {
     text-align: center;
     font-size: 2.4rem;
     margin-bottom: 40px;
