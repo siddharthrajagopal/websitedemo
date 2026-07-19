@@ -452,7 +452,7 @@
                     <p class="subtitle">An Executive Guide for Scaling AI</p>
                     <div class="cta-group">
                         <a href="#recommendations" class="cta-button">Recommendations</a>
-                        <a href="#contact" class="cta-button secondary">Sign-up for Discount Code</a>
+                        <a href="#contact" class="cta-button secondary">Meet us at BigDataLDN 2026</a>
                     </div>
                 </div>
             </div>
@@ -955,7 +955,8 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Sign-up for Discount Code</h2>
+            <h2>Meet and Talk to us at BigDataLDN 2026</h2>
+            <p class="contact-intro">We would like to do some interviews at BigDataLDN 2026. If you are interested, please submit this form.</p>
             <div class="contact-form">
                 <form id="contactForm">
                     <div class="form-group">
@@ -967,11 +968,11 @@
                         <span class="focus-border"></span>
                     </div>
                     <div class="form-group">
-                        <textarea>Add your reason to Why Data should be made the Fourth Pillar</textarea>
+                        <textarea placeholder="Share your experience towards Data as a Strategic Operating Pillar in your Enterprise" required></textarea>
                         <span class="focus-border"></span>
                     </div>
                     <button type="submit" class="cta-button">
-                        <span>Sign-Up</span>
+                        <span>Submit</span>
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </form>
@@ -1130,12 +1131,12 @@
                 });
 
                 // Show success message
-                button.innerHTML = '<i class="fas fa-check"></i> Signed Up!';
+                button.innerHTML = '<i class="fas fa-check"></i> Submitted!';
                 button.classList.add('success');
 
                 // Reset form after 2 seconds
                 setTimeout(() => {
-                    button.innerHTML = '<span>Sign Up</span><i class="fas fa-arrow-right"></i>';
+                    button.innerHTML = '<span>Submit</span><i class="fas fa-arrow-right"></i>';
                     button.classList.remove('success');
                     button.disabled = false;
                     form.reset();
@@ -1145,7 +1146,7 @@
                 button.innerHTML = '<i class="fas fa-times"></i> Error!';
                 button.style.backgroundColor = '#e74c3c';
                 setTimeout(() => {
-                    button.innerHTML = '<span>Sign Up</span><i class="fas fa-arrow-right"></i>';
+                    button.innerHTML = '<span>Submit</span><i class="fas fa-arrow-right"></i>';
                     button.style.backgroundColor = '';
                     button.disabled = false;
                 }, 2000);
